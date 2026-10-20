@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="360" viewBox="0 0 1800 360" fill="none">
+  <defs>
+    <radialGradient id="ember">
+      <stop stop-color="#c7a47c" stop-opacity=".28"/>
+      <stop offset=".35" stop-color="#80634b" stop-opacity=".13"/>
+      <stop offset="1" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="horizon" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#bda486" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#bda486" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#bda486" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <path fill="#0a0a0a" d="M0 0h1800v360H0z"/>
+  <ellipse cx="870" cy="300" rx="650" ry="360" fill="url(#ember)"/>
+  <g stroke="#b49c7e" stroke-width=".8" opacity=".25">
+    <ellipse cx="870" cy="290" rx="310" ry="105" transform="rotate(-18 870 290)"/>
+    <ellipse cx="870" cy="290" rx="270" ry="135" transform="rotate(28 870 290)"/>
+    <ellipse cx="870" cy="290" rx="170" ry="220" transform="rotate(48 870 290)" opacity=".5"/>
+  </g>
+  <path d="M200 285H1540" stroke="url(#horizon)" stroke-width="2" filter="url(#soft)"/>
+  <g fill="#d0b492" opacity=".3">
+    <circle cx="578" cy="210" r="1"/><circle cx="1120" cy="122" r="1.2"/>
+    <circle cx="770" cy="65" r=".8"/><circle cx="1025" cy="245" r="1"/>
+    <circle cx="661" cy="276" r="1.2"/><circle cx="1235" cy="305" r=".8"/>
+  </g>
+</svg>

@@ -1,0 +1,55 @@
+---
+interface Props { type?: 'cloud' | 'geometry' | 'radar' | 'activity'; }
+const { type = 'cloud' } = Astro.props;
+const points = Array.from({ length: 420 }, (_, i) => {
+  const y = 1 - 2 * (i + .5) / 420;
+  const radius = Math.sqrt(1 - y * y);
+  const angle = i * Math.PI * (3 - Math.sqrt(5));
+  const x = Math.cos(angle) * radius;
+  const z = Math.sin(angle) * radius;
+  return { x: 300 + x * 181 + z * 38, y: 270 + y * 181 - z * 26, r: .65 + (z + 1) * .65, opacity: .18 + (z + 1) * .29 };
+});
+---
+<div class={`scientific-visual visual-${type}`} aria-hidden="true">
+  <svg viewBox="0 0 600 540" fill="none">
+    <g class="reference-lines" stroke="currentColor" stroke-width=".6" opacity=".14">
+      <path d="M30 450 300 320 570 450M75 490 300 350 525 490M130 520 300 380 470 520M300 320V530M30 450H570M75 490H525"/>
+      <path d="M40 270H560M300 30V510" stroke-dasharray="2 9"/>
+    </g>
+    {type === 'cloud' && <g class="cloud-motion">
+      <ellipse cx="300" cy="270" rx="235" ry="80" transform="rotate(-30 300 270)" stroke="currentColor" stroke-width=".6" opacity=".22"/>
+      <ellipse cx="300" cy="270" rx="204" ry="183" stroke="currentColor" stroke-width=".5" opacity=".12"/>
+      {points.map(p => <circle cx={p.x} cy={p.y} r={p.r} fill="currentColor" opacity={p.opacity}/>)}
+      <path d="M122 300 300 116 472 302 300 441Z" stroke="currentColor" stroke-width=".5" opacity=".13"/>
+    </g>}
+    {type === 'geometry' && <g stroke="currentColor">
+      <path d="M115 177 300 90 485 177 300 267ZM115 177V363L300 453 485 363V177M300 267V453M115 363 300 270 485 363M300 90V270" stroke-width="1" opacity=".4"/>
+      {points.filter((_, i) => i % 2 === 0).map(p => <circle cx={p.x} cy={p.y} r={p.r} fill="currentColor" stroke="none" opacity={p.opacity * .8}/>)}
+      <path d="M115 363 220 238 300 453M300 90 392 291 485 363" opacity=".16"/>
+    </g>}
+    {type === 'radar' && <g stroke="currentColor">
+      {[65, 112, 160, 205].map(r => <circle cx="300" cy="270" r={r} opacity=".18" stroke-dasharray={r === 205 ? '2 8' : undefined}/>)}
+      <g class="scan-motion"><path d="M300 270 443 127" opacity=".7"/><path d="M300 270 504 242" opacity=".15"/></g>
+      <path d="M258 284 272 242H328L342 284ZM270 284V310M330 284V310M280 253H320" opacity=".65"/>
+      {[[175,190],[425,180],[198,354],[390,388]].map(([x,y]) => <g><path d={`M${x-12} ${y-12}h24v24h-24Z`} opacity=".45"/><circle cx={x} cy={y} r="2" fill="currentColor"/></g>)}
+    </g>}
+    {type === 'activity' && <g stroke="currentColor">
+      {[150, 210, 270, 330, 390].map(y => <path d={`M65 ${y}H535`} opacity=".12"/>)}
+      <path class="wave-motion" d="M65 274 90 270 110 280 136 179 160 349 185 244 210 275 236 264 260 283 286 142 312 352 338 231 360 274 388 270 412 192 436 334 462 250 484 274 510 268 535 235" stroke-width="2" opacity=".8"/>
+      <path d="M65 294 105 300 145 254 185 321 225 278 265 290 305 230 345 318 385 280 425 255 465 309 505 276 535 285" opacity=".2"/>
+    </g>}
+  </svg>
+  <span class="visual-coordinate">{type === 'cloud' ? 'X / Y / Z' : type === 'geometry' ? '01 / SPATIAL STRUCTURE' : type === 'radar' ? '02 / SENSOR GEOMETRY' : '03 / TEMPORAL PATTERNS'}</span>
+</div>
+<style>
+  .scientific-visual { position: relative; width: 100%; overflow: hidden; color: #c6bfae; background: radial-gradient(ellipse at 55% 45%, #b4a78d0b, transparent 65%); }
+  svg { display: block; width: 100%; height: 100%; }
+  .visual-coordinate { position: absolute; bottom: 20px; left: 24px; font: .55rem/1.6 "Times New Roman", Times, serif; letter-spacing: .16em; color: #aaa69f; }
+  .cloud-motion { transform-origin: 300px 270px; animation: cloud-drift 50s ease-in-out infinite alternate; }
+  .scan-motion { transform-origin: 300px 270px; animation: scan 65s linear infinite; }
+  .wave-motion { animation: signal 8s ease-in-out infinite alternate; }
+  @keyframes cloud-drift { from { transform: rotate(-7deg) scale(.96); } to { transform: rotate(10deg) scale(1.02); } }
+  @keyframes scan { to { transform: rotate(360deg); } }
+  @keyframes signal { from { opacity: .45; } to { opacity: .85; } }
+  @media (prefers-reduced-motion: reduce) { .cloud-motion, .scan-motion, .wave-motion { animation: none; } }
+</style>

@@ -20,10 +20,18 @@ export interface MusicEntry {
 }
 
 export const photos: Photo[] = [
-  { title: 'Somewhere along the way', caption: 'A place for a landscape photograph.', orientation: 'landscape' },
-  { title: 'A closer look', caption: 'A place for the little details.', orientation: 'portrait' },
-  { title: 'In passing', caption: 'A place for an everyday moment.', orientation: 'portrait' },
-  { title: 'The long way home', caption: 'A place for another view.', orientation: 'landscape' },
+  { image: 'images/beyond/photos/flower-shop.jpg', title: 'Strasbourg, France', alt: 'Colorful flowers and potted plants outside a flower shop beneath a cream awning.', orientation: 'landscape' },
+  { image: 'images/beyond/photos/waterfront-skyline.jpg', title: 'Toronto, Canada', alt: 'Boats on the water in front of the Toronto skyline and CN Tower beneath a pale blue sky.', orientation: 'portrait' },
+  { image: 'images/beyond/photos/sunset-silhouettes.jpg', title: 'Oslo, Norway', alt: 'Silhouettes of people against a golden sunset, with a standing figure in the foreground.', orientation: 'landscape' },
+  { image: 'images/beyond/photos/winter-cityscape.jpg', title: 'Salzburg, Austria', alt: 'Snow-covered rooftops and church towers overlooking a winding river, with warm city lights at dusk.', orientation: 'landscape' },
+  { image: 'images/beyond/photos/by-the-sea.jpg', title: 'Sicily, Italy', alt: 'A person in a red jacket sits in a folding chair on a beach facing turquoise waves.', orientation: 'landscape' },
+];
+
+// Add files to public/images/beyond/drawings/, then set image and descriptive alt.
+// Example: { image: 'images/beyond/drawings/sketch.jpg', alt: 'Pencil sketch of ...', caption: 'An optional note.' }
+export const drawings: Pick<Photo, 'image' | 'title' | 'caption' | 'alt'>[] = [
+  { image: 'images/beyond/drawings/bust-study.jpg', alt: 'Pencil drawing of a sculpted bearded bust, with strong shadows and flowing hair.' },
+  { image: 'images/beyond/drawings/still-life.jpg', alt: 'Pencil still-life drawing of glass bottles and fruit arranged on draped fabric.' },
 ];
 
 export const music: MusicEntry[] = [

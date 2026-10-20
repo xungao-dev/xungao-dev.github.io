@@ -2,9 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Publications" description="Papers and patents by Xun Gao.">
-  <section class="container page-hero">
+  <section class="container page-hero publications-hero">
     <h1><em>Publications.</em></h1>
-    <p class="page-intro">Papers and patents.</p>
   </section>
   <section class="container publication-section" aria-labelledby="papers-heading">
     <h2 id="papers-heading"><span class="section-index" aria-hidden="true">01</span> Papers</h2>
@@ -24,3 +23,8 @@ import Layout from '../layouts/Layout.astro';
     </article>
   </section>
 </Layout>
+<style>
+  .publications-hero { padding-bottom: 56px; }
+  .publications-hero h1 { margin-bottom: 0; }
+  .publication-section { padding-bottom: 56px; }
+</style>

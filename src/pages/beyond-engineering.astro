@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { photos, music, guitar } from '../data/beyond';
+import { photos, drawings } from '../data/beyond';
 import { href } from '../data/site';
 const asset = (path: string) => /^https?:\/\//.test(path) ? path : href(path);
 const viewable = photos.filter(photo => photo.image);
@@ -8,18 +8,16 @@ const viewable = photos.filter(photo => photo.image);
 <Layout title="Beyond Engineering" description="A little collection of photography, music, and guitar — Xun Gao outside of research and code.">
   <div class="container creative-page">
     <section class="creative-intro" aria-labelledby="creative-title">
-      <p class="kicker">A different kind of curiosity</p>
       <h1 id="creative-title">Beyond <em>Engineering.</em></h1>
       <p class="creative-subtitle">A little collection of things I enjoy outside of research and code.</p>
       <p class="intro-note">Outside of engineering, I enjoy exploring the world through photography and music. Whether it's capturing an interesting moment with my camera, discovering a new song, or spending time playing guitar, I like finding little ways to be creative.</p>
-      <div class="chapter-links"><a href="#photography">01 / Photography</a><a href="#music">02 / Music & guitar</a></div>
+      <div class="chapter-links"><a href="#photography">01 / Photography</a><a href="#drawing">02 / Drawing & sketching</a><a href="#music">03 / Music & guitar</a></div>
     </section>
 
     <section class="creative-section" id="photography" aria-labelledby="photo-heading">
       <header class="creative-section-head">
         <span class="chapter-number" aria-hidden="true">01</span>
-        <div><h2 id="photo-heading">Through My <em>Lens</em></h2><p>Moments, places, and little details worth remembering.</p></div>
-        <span class="margin-note">A visual notebook</span>
+        <div><h2 id="photo-heading">Through My <em>Lens</em></h2></div>
       </header>
       <div class="photo-grid">
         {photos.map((photo, index) => (
@@ -42,43 +40,40 @@ const viewable = photos.filter(photo => photo.image);
       </div>
     </section>
 
-    <section class="creative-section" id="music" aria-labelledby="music-heading">
+    <section class="creative-section" id="drawing" aria-labelledby="drawing-heading">
       <header class="creative-section-head">
         <span class="chapter-number" aria-hidden="true">02</span>
-        <div><h2 id="music-heading">Life in <em>Music</em></h2><p>A little guitar, a lot of music.</p></div>
-        <span class="margin-note">Off the clock, on repeat</span>
+        <div><h2 id="drawing-heading">Drawing & <em>Sketching</em></h2></div>
+      </header>
+      <p class="drawing-intro">I also enjoy drawing and sketching, capturing ideas and little details through a different perspective.</p>
+      <div class="drawing-grid">
+        {drawings.map((drawing, index) => (
+          <figure class="drawing">
+            <div class:list={['drawing-surface', { 'has-drawing': drawing.image }]}>
+              {drawing.image ? (
+                <img src={asset(drawing.image)} alt={drawing.alt || drawing.title || 'Personal drawing'} width="1000" height="1000" loading="lazy" decoding="async" />
+              ) : (
+                <div class="drawing-placeholder">
+                  <span class="placeholder-index">SKETCH / {String(index + 1).padStart(2, '0')}</span>
+                  <span class="sketch-lines" aria-hidden="true"></span>
+                  <span class="placeholder-copy">{drawing.title || 'An open page'}<small>Drawing to come</small></span>
+                </div>
+              )}
+            </div>
+            {(drawing.title || drawing.caption) && <figcaption>{drawing.title && <span>{drawing.image ? drawing.title : `${drawing.title} · Placeholder`}</span>}{drawing.caption && <span class="photo-caption">{drawing.caption}</span>}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="creative-section" id="music" aria-labelledby="music-heading">
+      <header class="creative-section-head">
+        <span class="chapter-number" aria-hidden="true">03</span>
+        <div><h2 id="music-heading">Life in <em>Music</em></h2></div>
       </header>
       <div class="music-intro">
         <p>Sometimes it's discovering a new song. Sometimes it's picking up the guitar and working through a few chords. I enjoy having a little space to play, listen, and follow whatever catches my ear.</p>
         <span class="music-staff" aria-hidden="true">♪</span>
-      </div>
-      <div class="music-layout">
-        <div class="listening-notes">
-          <h3 class="kicker">Listening notes</h3>
-          {music.map((entry, index) => (
-            <article class="music-entry">
-              <div class="album-cover">
-                {entry.cover ? <img src={asset(entry.cover)} alt="" width="160" height="160" loading="lazy" decoding="async" /> : <span class="record" aria-hidden="true"><span></span></span>}
-              </div>
-              <div>
-                <span class="entry-label">{entry.example ? 'Example entry' : `Listening note / ${String(index + 1).padStart(2, '0')}`}</span>
-                <h4>{entry.title || 'Untitled listening note'}</h4>
-                {entry.artist && <span class="artist">{entry.artist}</span>}
-                {entry.note && <p>{entry.note}</p>}
-                {entry.link && <a class="music-link" href={entry.link} target="_blank" rel="noopener noreferrer">Listen <span aria-hidden="true">↗</span></a>}
-              </div>
-            </article>
-          ))}
-        </div>
-        <figure class="guitar-note">
-          <div class="guitar-media">
-            {guitar.image ? <img src={asset(guitar.image)} alt={guitar.alt || 'My guitar'} width="900" height="1100" loading="lazy" decoding="async" /> : (
-              <div class="guitar-placeholder"><span class="kicker">Room for a little music</span><div class="guitar-strings" aria-hidden="true">{Array.from({ length: 6 }, () => <i></i>)}</div><span>A guitar, a quiet moment.<small>Photo or playing clip to come</small></span></div>
-            )}
-          </div>
-          {guitar.clip && (/\.(mp3|wav|ogg|m4a)(\?.*)?$/i.test(guitar.clip) ? <audio controls preload="none" src={asset(guitar.clip)} aria-label="Guitar recording"></audio> : <video controls playsinline preload="metadata" src={asset(guitar.clip)} aria-label="Guitar playing clip"><track kind="captions" /></video>)}
-          <figcaption>{guitar.caption || 'No performance to share just yet. Just a space for the joy of playing.'}</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -133,8 +128,8 @@ const viewable = photos.filter(photo => photo.image);
   .kicker, .chapter-links, .margin-note, .chapter-number, .entry-label, figcaption, .placeholder-index { font-size: .65rem; letter-spacing: .08em; color: var(--creative-muted); }
   .kicker { text-transform: uppercase; margin-bottom: 28px; }
   .creative-intro h1 { max-width: 1100px; margin-bottom: 24px; }
-  em { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
-  .creative-intro h1 em { font-style: italic; }
+  em { font-family: "Times New Roman", Times, serif; font-weight: 400; }
+  h1 em, h2 em, h3 em, h4 em { font-style: normal; }
   .creative-subtitle { font-size: 1.05rem; color: var(--creative-paper); line-height: 1.7; }
   .creative-page p { text-align: left; hyphens: none; }
   .intro-note { max-width: 860px; color: var(--creative-muted); font-size: .9rem; line-height: 1.9; margin-top: 28px; }
@@ -146,11 +141,11 @@ const viewable = photos.filter(photo => photo.image);
   .creative-section-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.7rem); margin-bottom: 12px; letter-spacing: -.045em; }
   .creative-section-head p { font-size: .8rem; line-height: 1.7; color: var(--creative-muted); margin: 0; }
   .margin-note { margin-left: auto; text-align: right; }
-  .photo-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 38px 28px; align-items: start; }
+  .photo-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px 28px; align-items: start; }
   .photo { margin: 0; min-width: 0; }
-  .photo:nth-child(even) { padding-top: 65px; }
+  .photo.portrait { grid-row: span 2; padding-top: 0; }
   .photo-surface { position: relative; display: block; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border: 1px solid #ffffff0d; background: #1c1b19; }
-  .portrait .photo-surface { aspect-ratio: 4 / 5; }
+  .portrait .photo-surface { aspect-ratio: 2 / 3; }
   .photo:nth-child(4n + 2) .photo-surface { background: #242320; }
   .photo:nth-child(4n + 3) .photo-surface { background: #191a1a; }
   .photo:nth-child(4n + 4) .photo-surface { background: #262421; }
@@ -161,13 +156,24 @@ const viewable = photos.filter(photo => photo.image);
   .photo-placeholder { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(18px, 3vw, 40px); }
   .placeholder-index { font-size: .55rem; }
   .frame-mark { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%,-50%); font-size: 2rem; font-weight: 200; color: #ffffff25; }
-  .placeholder-copy { font-family: Georgia, serif; font-style: italic; font-size: clamp(1rem, 2vw, 1.6rem); line-height: 1.5; color: #ccc5ba; }
-  .placeholder-copy small, .guitar-placeholder small { display: block; font: .6rem/1.8 Inter, sans-serif; letter-spacing: .04em; color: var(--creative-muted); margin-top: 8px; }
+  .placeholder-copy { font-family: "Times New Roman", Times, serif; font-style: italic; font-size: clamp(1rem, 2vw, 1.6rem); line-height: 1.5; color: #ccc5ba; }
+  .placeholder-copy small, .guitar-placeholder small { display: block; font: .6rem/1.8 "Times New Roman", Times, serif; letter-spacing: .04em; color: var(--creative-muted); margin-top: 8px; }
   figcaption { display: flex; flex-direction: column; gap: 5px; padding-top: 14px; line-height: 1.7; letter-spacing: .015em; }
   .photo-caption { color: #88857f; }
+  .drawing-intro { max-width: 760px; font-size: .9rem; line-height: 1.9; color: var(--creative-muted); margin-bottom: 36px; }
+  .drawing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .drawing { margin: 0; min-width: 0; }
+  .drawing-surface { aspect-ratio: 1; background: #1c1b19; border: 1px solid #ffffff0d; overflow: hidden; }
+  .drawing-surface img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .drawing-surface.has-drawing { aspect-ratio: auto; background: transparent; border: 0; }
+  .drawing-surface.has-drawing img { height: auto; }
+  .drawing-placeholder { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(18px, 3vw, 40px); }
+  .sketch-lines { position: absolute; top: 28%; left: 32%; width: 35%; height: 40%; border: 1px solid #ccc5ba20; transform: rotate(-8deg); }
+  .sketch-lines::after { content: ''; position: absolute; inset: 12% -10% -8% 15%; border: 1px solid #ccc5ba16; transform: rotate(18deg); }
+  @media (max-width: 640px) { .drawing-grid { grid-template-columns: 1fr; } }
   .music-intro { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-bottom: 45px; }
   .music-intro p { max-width: 760px; color: var(--creative-muted); font-size: .9rem; line-height: 1.9; margin-bottom: 0; }
-  .music-staff { font: italic 5rem Georgia, serif; color: #59544c; margin-right: 8%; }
+  .music-staff { font: italic 5rem "Times New Roman", Times, serif; color: #59544c; margin-right: 8%; }
   .music-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; }
   .listening-notes .kicker { margin-bottom: 18px; }
   .music-entry { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 24px; border-top: 1px solid var(--creative-line); padding-block: 26px; }
@@ -183,7 +189,7 @@ const viewable = photos.filter(photo => photo.image);
   .guitar-media { aspect-ratio: 4 / 5; background: #1d1c19; overflow: hidden; }
   .guitar-media img { width: 100%; height: 100%; object-fit: cover; }
   .guitar-placeholder { height: 100%; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 30px; overflow: hidden; }
-  .guitar-placeholder > span:last-child { font: italic 1.4rem/1.5 Georgia, serif; z-index: 1; }
+  .guitar-placeholder > span:last-child { font: italic 1.4rem/1.5 "Times New Roman", Times, serif; z-index: 1; }
   .guitar-strings { position: absolute; inset: 0 15% 0 35%; display: flex; justify-content: space-between; transform: rotate(18deg); }
   .guitar-strings i { height: 100%; width: 1px; background: #ffffff13; }
   .guitar-strings i:nth-child(n+4) { width: 2px; }
@@ -202,13 +208,13 @@ const viewable = photos.filter(photo => photo.image);
   .viewer-caption { font-size: .75rem; line-height: 1.6; margin: 15px 0; }
   .viewer-controls { display: flex; justify-content: center; align-items: center; gap: 20px; }
   .viewer-count { font-size: .7rem; }
-  @media (max-width: 900px) { .music-layout { gap: 30px; } .margin-note { display: none; } .photo:nth-child(even) { padding-top: 35px; } }
+  @media (max-width: 900px) { .music-layout { gap: 30px; } .margin-note { display: none; } }
   @media (max-width: 640px) {
     .creative-intro { padding-block: 50px; }
     .creative-section { padding-block: 28px 50px; }
     .creative-section-head { gap: 14px; margin-bottom: 28px; }
     .photo-grid, .music-layout { grid-template-columns: 1fr; gap: 28px; }
-    .photo:nth-child(even) { padding-top: 0; }
+    .photo.portrait { grid-row: auto; }
     .music-staff { display: none; }
     .music-entry { grid-template-columns: 65px minmax(0,1fr); gap: 18px; }
     .guitar-media { aspect-ratio: 1; }

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100" fill="none">
+  <!-- Original abstract architecture. Static, decorative, and deliberately low contrast. -->
+  <defs>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(1370 350) rotate(90) scale(530 650)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#484848" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wall" x1="1500" y1="0" x2="1150" y2="950" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#303030" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#0a0a0a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path fill="#0a0a0a" d="M0 0h1800v1100H0z"/>
+  <path fill="url(#light)" d="M0 0h1800v1100H0z"/>
+  <path d="M1230 0H1800V1100L1230 720Z" fill="url(#wall)"/>
+  <g stroke="#b0b0b0" stroke-width="1">
+    <path d="M1800 60 1230 270V720L1800 1030" opacity=".1"/>
+    <path d="M1800 220 1320 340V680L1800 870" opacity=".08"/>
+    <path d="M1800 365 1400 405V635L1800 735" opacity=".06"/>
+    <path d="M1230 0V720M1320 0V680M1400 0V635" opacity=".045"/>
+  </g>
+</svg>

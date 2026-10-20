@@ -1,5 +1,6 @@
 export const site = {
   name: 'Xun Gao',
+  portrait: 'images/portrait.jpg',
   headline: 'Machine learning, perception & intelligent systems',
   location: 'Stockholm, Sweden',
   email: 'xun.gao.work@gmail.com',

@@ -1,0 +1,5 @@
+Navigation background: "Cosmic Cliffs" in the Carina Nebula (NIRCam Image).
+Credit: NASA, ESA, CSA, STScI. Released July 12, 2022.
+Source: https://science.nasa.gov/asset/webb/cosmic-cliffs-in-the-carina-nebula-nircam-image/
+Local derivative: resized and JPEG-compressed; displayed cropped, desaturated,
+and darkened using CSS. No endorsement by NASA or its partners is implied.
