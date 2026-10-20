@@ -7,6 +7,7 @@ const { project } = Astro.props;
 <article class="project-card" data-category={project.category}>
   <a class="project-row" href={href(`projects/${project.slug}/`)}>
     <div>
+      <span class="project-index" aria-hidden="true">{project.number} /</span>
       <h3>{project.title}</h3>
       <p>{project.subtitle}</p>
       <span class="project-category">{project.category}</span>

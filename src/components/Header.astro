@@ -1,8 +1,20 @@
 ---
 import { href } from '../data/site';
+const path = Astro.url.pathname;
+const links = [
+  { label: 'Projects', path: 'projects/' },
+  { label: 'Publications', path: 'publications/' },
+  { label: 'Awards', path: 'awards/' },
+  { label: 'Beyond Engineering', path: 'beyond-engineering/' },
+];
 ---
 <header class="site-header">
   <div class="container nav-shell">
     <a class="wordmark" href={href()} aria-label="Xun Gao — homepage">Xun Gao</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      {links.map(link => (
+        <a href={href(link.path)} aria-current={path.startsWith(href(link.path)) ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </nav>
   </div>
 </header>
