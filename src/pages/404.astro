@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { href } from '../data/site';
+---
+<Layout title="Page not found">
+  <div class="container not-found"><p class="eyebrow">404 / LOST SIGNAL</p><h1>Page not found<span class="accent-dot">.</span></h1><p>It looks like this page doesn't exist.</p><a class="button button-primary" href={href()}>Back to home ↗</a></div>
+</Layout>

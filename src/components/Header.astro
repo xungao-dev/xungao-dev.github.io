@@ -1,0 +1,17 @@
+---
+import { href, site } from '../data/site';
+---
+<header class="site-header">
+  <div class="container nav-shell">
+    <a class="wordmark" href={href()} aria-label="Xun Gao — homepage">
+      <span class="wordmark-mark" aria-hidden="true">x<span class="wordmark-dot">.</span></span>
+      <span>Xun Gao</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href={href()}>Home</a>
+      <a href={href('projects/')}>Projects</a>
+      <a href={href('about/')}>About</a>
+      <a class="nav-contact" href={`mailto:${site.email}`}>Let's talk <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>

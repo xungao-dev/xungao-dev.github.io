@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+---
+<Layout title="About" description="About Xun Gao: education, research interests, engineering background and publications.">
+  <section class="container page-hero">
+    <p class="eyebrow">A LITTLE ABOUT ME</p>
+    <h1>Hello, I'm <em>Xun.</em></h1>
+    <p class="page-intro">I'm an engineer interested in the space where machine learning meets physical systems, rich sensory data and real-world applications.</p>
+  </section>
+  <section class="container about-page-grid">
+    <div class="about-main">
+      <h2>Background</h2>
+      <p>I completed an MSc in Information and Network Engineering, specializing in multimedia signal processing, at KTH Royal Institute of Technology in Stockholm. My work and projects range from computer vision and acoustic modeling to sensor fusion and application development.</p>
+      <p>I enjoy both sides of engineering: investigating models and methods, and making them practical through reliable code, careful evaluation and clear visualization.</p>
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-point"></div><div><span>RESEARCH</span><h3>Master's thesis · Ericsson Research & KTH</h3><p>Geometric deep learning for room acoustic parameter estimation from 3D scenes.</p></div></div>
+        <div class="timeline-item"><div class="timeline-point"></div><div><span>INDUSTRY</span><h3>R&D Python development · Ericsson</h3><p>Python tooling, software engineering workflows, tests and automation in an industrial R&D environment.</p></div></div>
+        <div class="timeline-item"><div class="timeline-point"></div><div><span>ROBOTICS</span><h3>Formula Student Driverless · BIT</h3><p>Computer vision, LiDAR–camera calibration and integration of autonomous driving perception.</p></div></div>
+      </div>
+      <h2>Selected publication</h2>
+      <div class="publication"><div class="pub-year">2023 · IEEE Photonics Journal</div><h3>A MEMS Mirror-Based Confocal Laser Endomicroscope with Image Distortion Correction</h3><p>Co-author · Biomedical optics and image correction.</p><a href="https://doi.org/10.1109/JPHOT.2023.3264597" target="_blank" rel="noopener noreferrer" class="text-link">View publication ↗</a></div>
+      <div class="about-disclaimer">You can add more publications and your latest research outcomes here when they are publicly available and approved for disclosure.</div>
+    </div>
+    <aside class="about-aside">
+      <div class="about-aside-card">
+        <div class="initials">X<span>G</span></div>
+        <span class="sidebar-label">AT A GLANCE</span>
+        <p><strong>Based in</strong><br/>{site.location}</p>
+        <p><strong>Education</strong><br/>MSc, KTH Royal Institute of Technology<br/>BEng, Beijing Institute of Technology</p>
+        <p><strong>Interests</strong><br/>Machine learning, signal processing, 3D vision, intelligent sensing</p>
+        {site.cvUrl && <a class="button button-primary" href={site.cvUrl} download>Download CV ↓</a>}
+      </div>
+      <div class="aside-connect"><span class="sidebar-label">CONNECT</span><a href={`mailto:${site.email}`}>{site.email} ↗</a><a href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+    </aside>
+  </section>
+</Layout>

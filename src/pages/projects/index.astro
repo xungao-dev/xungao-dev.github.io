@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { categories, projects } from '../../data/projects';
+---
+<Layout title="Projects" description="Selected machine learning, computer vision, biomedical, robotics and software engineering projects by Xun Gao.">
+  <section class="page-hero container">
+    <p class="eyebrow">SELECTED WORK / 2020—2026</p>
+    <h1>Research & <em>projects.</em></h1>
+    <p class="page-intro">A collection of things I've researched, built and learned along the way. Some projects have open-source code; for industry or collaborative work, I share descriptions only where permitted.</p>
+  </section>
+
+  <section class="container projects-listing">
+    <div class="filter-bar" role="group" aria-label="Filter projects by category">
+      <button class="filter-button is-active" type="button" data-filter="All" aria-pressed="true">All projects <span>{projects.length}</span></button>
+      {categories.map(category => <button class="filter-button" type="button" data-filter={category} aria-pressed="false">{category}</button>)}
+    </div>
+    <p id="filter-status" class="sr-only" aria-live="polite">Showing all {projects.length} projects</p>
+    <div class="project-grid projects-grid-all">
+      {projects.map(project => <ProjectCard project={project} />)}
+    </div>
+    <div class="portfolio-note"><strong>A note on code availability.</strong> Not every project can have a public GitHub repository. In those cases, the project page focuses on scope, methods and personally attributable work without sharing restricted material.</div>
+  </section>
+</Layout>
+<script>
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-category]'));
+  const status = document.querySelector<HTMLElement>('#filter-status');
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.filter ?? 'All';
+      let shown = 0;
+      buttons.forEach(item => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      cards.forEach(card => {
+        const visible = selected === 'All' || card.dataset.category === selected;
+        card.hidden = !visible;
+        if (visible) shown++;
+      });
+      if (status) status.textContent = `Showing ${shown} project${shown === 1 ? '' : 's'} in ${selected}`;
+    });
+  }
+</script>
