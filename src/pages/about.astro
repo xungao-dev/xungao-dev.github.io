@@ -21,18 +21,15 @@ import { site } from '../data/site';
       </div>
       <h2>Selected publication</h2>
       <div class="publication"><div class="pub-year">2023 · IEEE Photonics Journal</div><h3>A MEMS Mirror-Based Confocal Laser Endomicroscope with Image Distortion Correction</h3><p>Co-author · Biomedical optics and image correction.</p><a href="https://doi.org/10.1109/JPHOT.2023.3264597" target="_blank" rel="noopener noreferrer" class="text-link">View publication ↗</a></div>
-      <div class="about-disclaimer">You can add more publications and your latest research outcomes here when they are publicly available and approved for disclosure.</div>
     </div>
     <aside class="about-aside">
       <div class="about-aside-card">
-        <div class="initials">X<span>G</span></div>
         <span class="sidebar-label">AT A GLANCE</span>
         <p><strong>Based in</strong><br/>{site.location}</p>
         <p><strong>Education</strong><br/>MSc, KTH Royal Institute of Technology<br/>BEng, Beijing Institute of Technology</p>
         <p><strong>Interests</strong><br/>Machine learning, signal processing, 3D vision, intelligent sensing</p>
         {site.cvUrl && <a class="button button-primary" href={site.cvUrl} download>Download CV ↓</a>}
       </div>
-      <div class="aside-connect"><span class="sidebar-label">CONNECT</span><a href={`mailto:${site.email}`}>{site.email} ↗</a><a href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
     </aside>
   </section>
 </Layout>

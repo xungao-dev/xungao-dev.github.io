@@ -1,21 +1,16 @@
 ---
-import ProjectArt from './ProjectArt.astro';
 import type { Project } from '../data/projects';
 import { href } from '../data/site';
 interface Props { project: Project; }
 const { project } = Astro.props;
 ---
 <article class="project-card" data-category={project.category}>
-  <a href={href(`projects/${project.slug}/`)} class="card-cover" aria-label={`Read about ${project.title}`}>
-    <ProjectArt type={project.art} />
-  </a>
-  <div class="card-content">
-    <div class="card-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div>
-    <h3><a href={href(`projects/${project.slug}/`)}>{project.title}</a></h3>
-    <p>{project.subtitle}</p>
-    <div class="tag-row">
-      {project.tags.slice(0, 3).map(tag => <span class="tag">{tag}</span>)}
+  <a class="project-row" href={href(`projects/${project.slug}/`)}>
+    <div>
+      <h3>{project.title}</h3>
+      <p>{project.subtitle}</p>
+      <span class="project-category">{project.category}</span>
     </div>
-    <a class="card-arrow" href={href(`projects/${project.slug}/`)} aria-label={`View ${project.title}`}>View case study <span aria-hidden="true">↗</span></a>
-  </div>
+    <span class="project-arrow" aria-hidden="true">↗</span>
+  </a>
 </article>

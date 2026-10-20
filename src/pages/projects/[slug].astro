@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ProjectArt from '../../components/ProjectArt.astro';
 import { projects, type Project } from '../../data/projects';
 import { href } from '../../data/site';
 
@@ -24,7 +23,6 @@ const { project } = Astro.props;
         {project.paper && <a class="button button-outline" href={project.paper} target="_blank" rel="noopener noreferrer">{project.paperLabel ?? 'Read paper'} ↗</a>}
       </div>
     </div>
-    <div class="detail-art"><ProjectArt type={project.art} /></div>
     <div class="detail-body">
       <div class="detail-main">
         <section>
