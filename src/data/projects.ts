@@ -36,6 +36,8 @@ export const projects: Project[] = [
     slug: 'point2acoustic',
     number: '01',
     title: 'Point2Acoustic',
+    paper: 'https://arxiv.org/abs/2610.27023',
+    paperLabel: 'Read preprint on arXiv',
     eyebrow: 'GEOMETRIC DEEP LEARNING',
     subtitle: 'Acoustic parameter estimation from 3D scene geometry',
     category: 'Machine Learning & Signal Processing',

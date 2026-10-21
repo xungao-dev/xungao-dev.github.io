@@ -1,30 +1,66 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { href } from '../data/site';
 ---
-<Layout title="Publications" description="Papers and patents by Xun Gao.">
-  <section class="container page-hero publications-hero">
-    <h1><em>Publications.</em></h1>
-  </section>
-  <section class="container publication-section" aria-labelledby="papers-heading">
-    <h2 id="papers-heading"><span class="section-index" aria-hidden="true">01</span> Papers</h2>
-    <article class="publication-entry">
-      <span class="pub-year">June 2023 · IEEE Photonics Journal</span>
-      <h3>A MEMS Mirror-Based Confocal Laser Endomicroscope with Image Distortion Correction</h3>
-      <p>Second author · DOI: 10.1109/JPHOT.2023.3264597.</p>
-      <a href="https://doi.org/10.1109/JPHOT.2023.3264597" target="_blank" rel="noopener noreferrer" class="text-link">Read paper <span aria-hidden="true">↗</span></a>
-    </article>
-  </section>
-  <section class="container publication-section" aria-labelledby="patents-heading">
-    <h2 id="patents-heading"><span class="section-index" aria-hidden="true">02</span> Patents</h2>
-    <article class="publication-entry">
-      <span class="pub-year">CN Patent Application · CN117572392A</span>
-      <h3>A Camera–LiDAR Joint Calibration Method and Device Based on 3D–3D Matching Point Pairs</h3>
-      <p>First inventor · Under substantive examination.</p>
-    </article>
+<Layout title="Research & Publications" description="Research publications and intellectual property by Xun Gao, including Point2Acoustic, biomedical imaging research, and camera–LiDAR calibration.">
+  <section class="container research-publications" aria-labelledby="research-heading">
+    <header class="page-hero publications-hero">
+      <h1 id="research-heading">Research & Publications.</h1>
+    </header>
+
+    <div class="publication-group" aria-labelledby="papers-heading">
+      <h2 id="papers-heading"><span class="section-index" aria-hidden="true">01</span> Publications</h2>
+      <article class="publication-entry">
+        <span class="pub-year">2026 · PREPRINT</span>
+        <h3><a href="https://arxiv.org/abs/2610.27023" target="_blank" rel="noopener noreferrer">Point2Acoustic: Efficient Room Acoustic Parameter Estimation from 3D Geometry and Material Properties</a></h3>
+        <p class="authors"><strong>Xun Gao</strong>, Raksha Ramakrishna, Tommy Falk, Werner de Bruijn</p>
+        <p class="venue">Submitted to <i>IEEE ICASSP 2027</i> · arXiv preprint</p>
+        <nav class="publication-resources" aria-label="Point2Acoustic resources">
+          <a href="https://arxiv.org/abs/2610.27023" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+          <a href="https://arxiv.org/pdf/2610.27023" target="_blank" rel="noopener noreferrer">PDF <span aria-hidden="true">↗</span></a>
+          <a href={href('projects/point2acoustic/')}>Project <span aria-hidden="true">↗</span></a>
+        </nav>
+      </article>
+
+      <article class="publication-entry">
+        <span class="pub-year">2023 · JOURNAL ARTICLE</span>
+        <h3><a href="https://doi.org/10.1109/JPHOT.2023.3264597" target="_blank" rel="noopener noreferrer">A MEMS Mirror-Based Confocal Laser Endomicroscope with Image Distortion Correction</a></h3>
+        <p class="authors">Teng Pan, <strong>Xun Gao</strong>, Hengzhang Yang, Yingchao Cao, Hui Zhao, Qian Chen, Huikai Xie</p>
+        <p class="venue"><i>IEEE Photonics Journal</i>, 2023</p>
+        <nav class="publication-resources" aria-label="Endomicroscope paper resources">
+          <a href="https://doi.org/10.1109/JPHOT.2023.3264597" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+        </nav>
+      </article>
+    </div>
+
+    <div class="publication-group patent-group" aria-labelledby="patent-heading">
+      <h2 id="patent-heading"><span class="section-index" aria-hidden="true">02</span> Patent</h2>
+      <article class="publication-entry">
+        <span class="pub-year">PATENT APPLICATION</span>
+        <h3><a href="https://patents.google.com/patent/CN117572392A/en" target="_blank" rel="noopener noreferrer">A Camera–LiDAR Joint Calibration Method and Device Based on 3D–3D Matching Point Pairs</a></h3>
+        <p class="authors"><strong>Xun Gao</strong> · First inventor</p>
+        <p class="venue">Chinese Patent Application · CN117572392A</p>
+        <nav class="publication-resources" aria-label="Calibration patent resources">
+          <a href="https://patents.google.com/patent/CN117572392A/en" target="_blank" rel="noopener noreferrer">Google Patents <span aria-hidden="true">↗</span></a>
+        </nav>
+      </article>
+    </div>
   </section>
 </Layout>
 <style>
-  .publications-hero { padding-bottom: 56px; }
+  .research-publications { padding-bottom: 56px; }
+  .publications-hero { padding-bottom: 48px; }
   .publications-hero h1 { margin-bottom: 0; }
-  .publication-section { padding-bottom: 56px; }
+  .publication-group > h2 { font-size: clamp(2rem, 4vw, 3rem); font-family: var(--serif); font-style: normal; font-weight: 400; color: #fff; margin-bottom: 24px; }
+  .publication-entry { padding-block: 24px; }
+  .publication-entry h3 { font-size: 1.15rem; line-height: 1.5; margin-block: 12px; }
+  .publication-entry h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .publication-entry p { text-align: left; hyphens: none; font-size: .9rem; line-height: 1.7; margin-bottom: 8px; }
+  .authors strong { color: var(--ink); font-weight: 700; }
+  .venue i { font-style: italic; }
+  .publication-resources { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 16px; font-size: .8rem; }
+  .publication-resources a { border-bottom: 1px solid #666057; padding-bottom: 4px; }
+  .publication-resources a:hover { border-color: var(--ink); }
+  .publication-resources span { margin-left: 6px; }
+  .patent-group { margin-top: 32px; }
 </style>
