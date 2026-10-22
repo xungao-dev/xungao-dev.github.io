@@ -8,6 +8,8 @@ export function getStaticPaths() {
 }
 interface Props { project: Project; }
 const { project } = Astro.props;
+const demoFiles = import.meta.glob('/public/media/projects/*.mp4', { query: '?url', import: 'default' });
+const hasDemoVideo = project.demoVideo && `/public/${project.demoVideo}` in demoFiles;
 ---
 <Layout title={project.title} description={project.subtitle}>
   <article class="container detail-page">
@@ -29,6 +31,15 @@ const { project } = Astro.props;
           <h2>Overview</h2>
           <p>{project.introduction}</p>
         </section>
+        {hasDemoVideo && project.demoVideo && (
+          <section aria-labelledby="demo-heading">
+            <h2 id="demo-heading">Demo</h2>
+            <video class="project-demo" controls playsinline preload="none" aria-label={`${project.title} demonstration`}>
+              <source src={href(project.demoVideo)} type="video/mp4" />
+              <a href={href(project.demoVideo)}>Download the demo video</a>
+            </video>
+          </section>
+        )}
         <section>
           <h2>Approach</h2>
           <p>{project.approach}</p>
@@ -53,3 +64,6 @@ const { project } = Astro.props;
     <div class="next-project"><p>KEEP EXPLORING</p><a href={href('projects/')}>All projects <span aria-hidden="true">↗</span></a></div>
   </article>
 </Layout>
+<style>
+  .project-demo { display: block; width: 100%; height: auto; max-height: 70svh; background: #0a0a0a; border: 1px solid var(--hairline); }
+</style>

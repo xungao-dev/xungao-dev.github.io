@@ -27,6 +27,7 @@ export type Project = {
   github?: string;
   paper?: string;
   paperLabel?: string;
+  demoVideo?: string; // Relative to public/; shown only when the file exists at build time.
 };
 
 // All project text is editable here. Check company/team disclosure rules before adding
@@ -120,22 +121,23 @@ export const projects: Project[] = [
   {
     slug: 'emotion-aware-system',
     number: '05',
-    title: 'Emotion-Aware Interactive System',
+    title: 'Emotion-Aware Audio Player',
     eyebrow: 'VISION & APPLICATION ENGINEERING',
-    subtitle: 'Image-based emotion recognition linked to an interactive interface',
+    subtitle: 'Facial expression recognition for music selection and ESP32 audio playback',
     category: 'Machine Learning & Signal Processing',
-    tags: ['Python', 'Computer Vision', 'GUI', 'Multiprocessing'],
+    tags: ['Python', 'OpenCV', 'Keras', 'mini-XCEPTION', 'FER2013', 'ESP32'],
     art: 'emotion',
-    context: 'Software / computer vision project · Public code',
-    introduction: 'An application combining visual emotion detection, interface updates and music selection logic.',
-    approach: 'Integrated an emotion recognition component with a Python GUI, data handling and concurrent processing across threads and processes.',
+    year: '2022',
+    context: 'Academic team project · 6 contributors',
+    introduction: 'An academic team project connecting facial expression recognition with music playback. An ESP32-CAM captures images, a PC-side CNN classifies facial expressions, and the system uses the results to choose music played on ESP32 hardware through HTTP communication. My contribution was coding, testing, and debugging the emotion recognition module.',
+    approach: 'The team system combines ESP32-CAM image capture, PC-side facial expression classification, and HTTP communication for music selection and playback on ESP32 hardware. The recognition module uses Python, OpenCV, Keras, mini-XCEPTION, and FER2013. My work focused on the emotion recognition module within this broader team system.',
     highlights: [
-      'Worked on image-based emotion detection and label aggregation.',
-      'Connected model outputs to application state and visual updates.',
-      'Explored multi-component desktop application architecture.',
+      'Coded the emotion recognition module.',
+      'Tested and debugged the emotion recognition module.',
     ],
     codeNote: 'Part of the code is public, but some imported modules are absent from the repository. Document the missing requirements before presenting it as a runnable demo.',
     github: 'https://github.com/xungao-dev/Emotion-Recgnition',
+    demoVideo: 'media/projects/emotion-aware-player-demo.mp4',
   },
   {
     slug: 'adventure-game',
