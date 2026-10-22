@@ -121,7 +121,7 @@ export const projects: Project[] = [
   {
     slug: 'emotion-aware-system',
     number: '05',
-    title: 'Emotion-Aware Audio Player',
+    title: 'Emotionally Interactive Intelligent Audio Player',
     eyebrow: 'VISION & APPLICATION ENGINEERING',
     subtitle: 'Facial expression recognition for music selection and ESP32 audio playback',
     category: 'Machine Learning & Signal Processing',
