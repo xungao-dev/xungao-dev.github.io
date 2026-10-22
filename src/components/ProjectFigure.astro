@@ -1,0 +1,18 @@
+---
+import type { ProjectFigure } from '../data/projects';
+import { href } from '../data/site';
+interface Props { figure: ProjectFigure; }
+const { figure } = Astro.props;
+---
+<figure class="project-figure">
+  <a href={href(figure.image)} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size image: ${figure.alt}`}>
+    <img src={href(figure.image)} alt={figure.alt} width={figure.width} height={figure.height} loading="lazy" decoding="async" />
+  </a>
+  <figcaption>{figure.caption}</figcaption>
+</figure>
+<style>
+  .project-figure { margin: 0 0 28px; }
+  a { display: block; }
+  img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); }
+  figcaption { margin-top: 10px; color: var(--muted); font-size: .75rem; line-height: 1.7; }
+</style>

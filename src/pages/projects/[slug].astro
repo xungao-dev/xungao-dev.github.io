@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ProjectFigure from '../../components/ProjectFigure.astro';
 import { projects, type Project } from '../../data/projects';
 import { href } from '../../data/site';
 
@@ -10,6 +11,8 @@ interface Props { project: Project; }
 const { project } = Astro.props;
 const demoFiles = import.meta.glob('/public/media/projects/*.mp4', { query: '?url', import: 'default' });
 const hasDemoVideo = project.demoVideo && `/public/${project.demoVideo}` in demoFiles;
+const figureFiles = import.meta.glob('/public/images/projects/**/*.{png,jpg,jpeg,webp}', { query: '?url', import: 'default' });
+const availableFigures = project.figures?.filter(figure => `/public/${figure.image}` in figureFiles) ?? [];
 ---
 <Layout title={project.title} description={project.subtitle}>
   <article class="container detail-page">
@@ -44,6 +47,21 @@ const hasDemoVideo = project.demoVideo && `/public/${project.demoVideo}` in demo
           <h2>Approach</h2>
           <p>{project.approach}</p>
         </section>
+        {project.sections?.map(section => (
+          <section>
+            <h2>{section.title}</h2>
+            {section.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+            {section.bullets && <ul class="detail-bullets">{section.bullets.map(bullet => <li>{bullet}</li>)}</ul>}
+            {section.figures?.filter(figure => `/public/${figure.image}` in figureFiles).map(figure => <ProjectFigure figure={figure} />)}
+          </section>
+        ))}
+        {availableFigures.length > 0 && (
+          <div class="project-figures">
+            {availableFigures.map(figure => (
+              <ProjectFigure figure={figure} />
+            ))}
+          </div>
+        )}
         <section>
           <h2>Selected contributions</h2>
           <ul class="detail-bullets">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul>
@@ -66,4 +84,5 @@ const hasDemoVideo = project.demoVideo && `/public/${project.demoVideo}` in demo
 </Layout>
 <style>
   .project-demo { display: block; width: 100%; height: auto; max-height: 70svh; background: #0a0a0a; border: 1px solid var(--hairline); }
+  .project-figures { margin-bottom: 45px; }
 </style>
