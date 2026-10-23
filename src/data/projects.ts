@@ -276,6 +276,69 @@ export const projects: Project[] = [
     codeNote: 'The source repository is private. Source code is not published on this portfolio.',
     demoUrl: 'https://developer-jobmatch.web.app/',
   },
+  {
+    slug: 'cv-object-tracking',
+    number: '10',
+    title: 'Visual Marker Tracking and 3D Trajectory Reconstruction',
+    eyebrow: 'COMPUTER VISION & MOTION TRACKING',
+    subtitle: 'Camera calibration, visual marker tracking, and 3D trajectory reconstruction',
+    category: 'Robotics & Sensing',
+    tags: ['MATLAB', 'Computer Vision', 'Camera Calibration', 'Image Processing', 'KLT Tracking', '3D Reconstruction'],
+    art: 'radar',
+    featured: false,
+    context: 'Individual academic project · Mentorship and supervision from NC State University',
+    introduction: 'Developed a computer vision-based data acquisition pipeline to track visual markers and reconstruct their trajectories in three-dimensional space. This individual academic project was completed under mentorship and supervision from NC State University.',
+    approach: 'Combined camera calibration, image preprocessing, segmentation, feature tracking, and coordinate transformations to recover marker motion from recorded video sequences. The experiments followed five visual markers on a moving rod in a controlled recording environment.',
+    sections: [
+      {
+        title: 'Reconstructed Trajectories',
+        paragraphs: [
+          'Successfully reconstructed trajectories of five visual markers for motion along one, two, and three dimensions. The plots show the recovered paths in world coordinates.',
+          'The experiments also suggested that some preprocessing and segmentation operations could be omitted under controlled recording conditions.',
+        ],
+        figures: [
+          { image: 'images/projects/cv-object-tracking/trajectory-1d.jpg', width: 1120, height: 840, alt: 'Five reconstructed marker paths for one-dimensional rod motion.', caption: 'Reconstructed trajectories of five markers during 1D motion.' },
+          { image: 'images/projects/cv-object-tracking/trajectory-1d-after-segmentation.jpg', width: 700, height: 525, alt: 'Five reconstructed marker paths for one-dimensional motion after image segmentation.', caption: '1D trajectory reconstruction using segmented marker observations.' },
+          { image: 'images/projects/cv-object-tracking/trajectory-2d.jpg', width: 1120, height: 840, alt: 'Five reconstructed marker paths for two-dimensional rod motion.', caption: 'Reconstructed trajectories of five markers during 2D motion.' },
+          { image: 'images/projects/cv-object-tracking/trajectory-3d.jpg', width: 1120, height: 840, alt: 'Five reconstructed marker paths for three-dimensional rod motion.', caption: 'Reconstructed trajectories of five markers during 3D motion.' },
+        ],
+      },
+      {
+        title: 'Camera Calibration',
+        paragraphs: ['Estimated intrinsic and extrinsic camera parameters to establish the relationship between camera and world coordinate systems. Checkerboard observations supported calibration of the recording setup.'],
+        figures: [
+          { image: 'images/projects/cv-object-tracking/experimental-setup.jpg', width: 4032, height: 3024, alt: 'Recording setup with a marker-covered rod against a dark backdrop, a tripod-mounted camera, and a light.', caption: 'Controlled recording environment for tracking visual markers on a moving rod.' },
+          { image: 'images/projects/cv-object-tracking/camera-calibration.jpg', width: 2560, height: 1600, alt: 'Checkerboard calibration image with detected and reprojected points beside reprojection-error and camera-pose plots.', caption: 'Checkerboard-based calibration: detected corners, reprojected points, and estimated camera geometry.' },
+        ],
+      },
+      {
+        title: 'Image Processing and Segmentation',
+        paragraphs: ['Investigated denoising and automatic white balancing, then used color thresholding to separate the visual markers from the background. Segmentation was evaluated as part of the tracking pipeline under controlled recording conditions.'],
+        figures: [
+          { image: 'images/projects/cv-object-tracking/recorded-marker-frame.png', width: 544, height: 960, alt: 'Recorded frame showing five bright markers on a vertical rod against a dark backdrop.', caption: 'Recorded marker frame before segmentation.' },
+          { image: 'images/projects/cv-object-tracking/segmented-marker-frame.png', width: 544, height: 960, alt: 'Binary segmentation mask showing five marker regions and a bright vertical region above them.', caption: 'Thresholded frame highlighting the markers, with a residual foreground region above the rod.' },
+        ],
+      },
+      {
+        title: 'Object Tracking',
+        paragraphs: ['Defined regions of interest around the visual markers and applied Kanade–Lucas–Tomasi (KLT) tracking to follow marker positions across image sequences. These image-space tracks provided observations for trajectory reconstruction.'],
+      },
+      {
+        title: '3D Trajectory Reconstruction',
+        paragraphs: ['Used calibrated camera geometry and coordinate transformations to reconstruct marker positions in world coordinates. The reconstructed trajectories visualize motion along one, two, and three dimensions within the experimental setup.'],
+        figures: [
+          { image: 'images/projects/cv-object-tracking/camera-world-coordinate-system.png', width: 782, height: 590, alt: 'Diagram locating two cameras relative to the X, Y, and Z axes of the world coordinate system, with dimensions in millimeters.', caption: 'Camera positions and world-coordinate geometry used to relate recorded observations to the experimental space.' },
+        ],
+      },
+    ],
+    highlightsTitle: 'Key Accomplishments',
+    highlights: [
+      'Combined camera calibration, image processing, KLT marker tracking, and coordinate transformations in a MATLAB pipeline.',
+      'Reconstructed 1D, 2D, and 3D trajectories of five visual markers on a moving rod.',
+      'Examined when preprocessing and segmentation could be omitted under controlled recording conditions.',
+    ],
+    codeNote: 'No public source-code repository is available for this academic project. This page presents the methodology and experimental figures.',
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
