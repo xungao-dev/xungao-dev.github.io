@@ -24,6 +24,7 @@ const availableFigures = project.figures?.filter(figure => `/public/${figure.ima
         <p class="detail-subtitle">{project.subtitle}</p>
       </div>
       <div class="detail-links">
+        {project.demoUrl && <a class="button button-primary" href={project.demoUrl} target="_blank" rel="noopener noreferrer">Live Demo ↗</a>}
         {project.github && <a class="button button-primary" href={project.github} target="_blank" rel="noopener noreferrer">View code ↗</a>}
         {project.paper && <a class="button button-outline" href={project.paper} target="_blank" rel="noopener noreferrer">{project.paperLabel ?? 'Read paper'} ↗</a>}
       </div>
@@ -63,7 +64,7 @@ const availableFigures = project.figures?.filter(figure => `/public/${figure.ima
           </div>
         )}
         <section>
-          <h2>Selected contributions</h2>
+          <h2>{project.highlightsTitle ?? 'Selected contributions'}</h2>
           <ul class="detail-bullets">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul>
         </section>
         <section class="availability-note">

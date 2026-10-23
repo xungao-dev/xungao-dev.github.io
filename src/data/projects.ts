@@ -25,7 +25,9 @@ export type Project = {
   introduction: string;
   approach: string;
   highlights: string[];
+  highlightsTitle?: string;
   codeNote: string;
+  demoUrl?: string;
   github?: string;
   paper?: string;
   paperLabel?: string;
@@ -144,26 +146,6 @@ export const projects: Project[] = [
     demoVideo: 'media/projects/emotion-aware-player-demo.mp4',
   },
   {
-    slug: 'adventure-game',
-    number: '06',
-    title: 'My Adventure Game',
-    eyebrow: 'SOFTWARE DEVELOPMENT',
-    subtitle: 'A story-based desktop game with multiple gameplay modes',
-    category: 'Software Development',
-    tags: ['C++', 'Game Logic', 'Desktop Application'],
-    art: 'game',
-    context: 'Programming project · Public code',
-    introduction: 'A C++ desktop game built around a school adventure storyline and interactive levels.',
-    approach: 'Implemented game modes, scene transitions, interactions and level logic in a modular C++ project.',
-    highlights: [
-      'Built both story mode and endless mode.',
-      'Organized game logic across source files and reusable headers.',
-      'Worked with desktop graphics, events and audiovisual components.',
-    ],
-    codeNote: 'Public repository available. Some game assets are not included in the current repository, so a complete build may require additional files.',
-    github: 'https://github.com/xungao-dev/Game-MyAdvanture',
-  },
-  {
     slug: 'biomedical-signal-processing',
     number: '07',
     title: 'Biomedical Signal Processing & Interactive Analysis',
@@ -261,6 +243,38 @@ export const projects: Project[] = [
       'Compared experimental reconstructions and documented limitations in perceptual quality, SNR, and nominal bitrate calculations.',
     ],
     codeNote: 'Academic coursework, not a research publication or production speech codec. Figures are extracted from recorded notebook outputs. No public code repository or audio demo is provided; original notebooks, speech datasets, WAV files, and course-provided codebooks are not distributed here.',
+  },
+  {
+    slug: 'jobmatch',
+    number: '09',
+    title: 'JobMatch',
+    eyebrow: 'SOFTWARE DEVELOPMENT',
+    subtitle: 'GitHub-based job discovery and application tracking for developers',
+    category: 'Software Development',
+    art: 'game',
+    featured: false,
+    year: '2026',
+    context: 'KTH Royal Institute of Technology — Academic group project',
+    tags: ['React', 'JavaScript', 'Vite', 'Tailwind CSS', 'Firebase Authentication', 'Firestore', 'GitHub REST API', 'Jobtech API', 'Zustand', 'TanStack Query', 'React Router', 'Vitest'],
+    introduction: 'JobMatch is a web application that helps developers discover relevant job opportunities by combining information from their GitHub repositories with their career preferences. Users can authenticate through GitHub, specify job preferences, explore matching opportunities, and manage saved and applied jobs.',
+    approach: 'The team integrated the GitHub REST API to analyze repository languages and topics, and Sweden’s Jobtech Job Search API to retrieve relevant job postings. Job discovery uses programming languages and user-defined preferences, including location and remote work. Firebase Authentication handles sign-in, while Firestore persists user profiles and job data. The application follows a Model-View-Presenter (MVP) architecture.',
+    sections: [
+      {
+        title: 'Team',
+        paragraphs: ['A collaborative team project at KTH Royal Institute of Technology. The features described here are accomplishments of the team.'],
+      },
+    ],
+    highlightsTitle: 'Key Features',
+    highlights: [
+      'GitHub OAuth authentication and repository analysis.',
+      'Job discovery using programming languages and user-defined preferences.',
+      'Job search with location and remote-work preferences.',
+      'Saving job opportunities and tracking applications.',
+      'Firebase persistence for user profiles and job data.',
+      'Component organization using Model-View-Presenter architecture.',
+    ],
+    codeNote: 'The source repository is private. Source code is not published on this portfolio.',
+    demoUrl: 'https://developer-jobmatch.web.app/',
   },
 ];
 
