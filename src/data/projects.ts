@@ -33,6 +33,7 @@ export type Project = {
   paperLabel?: string;
   demoVideo?: string; // Relative to public/; shown only when the file exists at build time.
   figures?: ProjectFigure[];
+  overviewFigure?: ProjectFigure;
   sections?: { title: string; paragraphs: string[]; bullets?: string[]; figures?: ProjectFigure[] }[];
 };
 
@@ -338,6 +339,56 @@ export const projects: Project[] = [
       'Examined when preprocessing and segmentation could be omitted under controlled recording conditions.',
     ],
     codeNote: 'No public source-code repository is available for this academic project. This page presents the methodology and experimental figures.',
+  },
+  {
+    slug: 'rl-intersection-navigation',
+    number: '11',
+    title: 'Deep Reinforcement Learning for Autonomous Intersection Navigation',
+    eyebrow: 'REINFORCEMENT LEARNING & AUTONOMOUS DRIVING',
+    subtitle: 'Comparing deep reinforcement learning algorithms for autonomous navigation at an unsignalized intersection.',
+    category: 'Robotics & Sensing',
+    tags: ['Python', 'PyTorch', 'Deep Reinforcement Learning', 'Double DQN', 'Autonomous Driving', 'Highway-env'],
+    art: 'radar',
+    year: '2023',
+    featured: false,
+    context: 'Academic group project · 5 contributors',
+    introduction: 'This academic group project investigates deep reinforcement learning for autonomous vehicle navigation through an unsignalized intersection. Using the Highway-env simulation environment, the team evaluated several Deep Q-Network variants and examined how network architecture, target-network update frequency, and traffic density affect learning performance.',
+    overviewFigure: {
+      image: 'images/projects/rl-intersection-navigation/temp_dqn_training_figure.gif', width: 600, height: 632,
+      alt: 'Highway-env animation showing a controlled vehicle navigating an unsignalized intersection among surrounding traffic.',
+      caption: 'Original project simulation: a controlled vehicle interacting with surrounding traffic in Highway-env.',
+    },
+    approach: 'Compared Double DQN, Dueling DQN, Double DQN with a convolutional neural network, and Double DQN with prioritized experience replay. Double DQN separates action selection from target-value evaluation; the other variants explore value–advantage decomposition, convolutional network architecture, and priority-based replay sampling. The team compared training rewards and losses in the default and customized intersection environments.',
+    sections: [
+      {
+        title: 'Customized Intersection Environment',
+        paragraphs: ['The modified Highway-env configuration uses kinematic observations and one controlled vehicle. Five discrete actions allow left and right lane changes, idle, acceleration, and deceleration. Reward settings penalize collisions and reward speed and arrival; traffic flow settings change the difficulty of interactions with surrounding vehicles.'],
+      },
+      {
+        title: 'Experiments and Results',
+        paragraphs: ['In the default-environment reward plot, Double DQN achieves the highest rewards late in training. In the customized environment, the CNN variant shows higher late-training rewards than baseline Double DQN and Dueling DQN, while prioritized replay exhibits large fluctuations. The customized reward configuration changes the reward scale, so raw values across the two environments are not directly comparable.'],
+        figures: [
+          { image: 'images/projects/rl-intersection-navigation/Compared_Reward_In_Default_Environment.png', width: 1500, height: 900, alt: 'Reward curves for four DQN variants in the default environment, with Double DQN highest late in training.', caption: 'Default intersection: training reward comparison across Double DQN, CNN, prioritized replay, and Dueling DQN variants.' },
+          { image: 'images/projects/rl-intersection-navigation/Compared_Reward_In_Specific_Environment.png', width: 1500, height: 900, alt: 'Reward curves in the customized environment showing steady CNN improvement and large prioritized-replay reward spikes.', caption: 'Customized intersection: different learning behavior under modified traffic and reward settings, including volatile prioritized-replay returns.' },
+        ],
+      },
+      {
+        title: 'Target-Network Updates and Traffic Density',
+        paragraphs: ['The team varied target-network copy frequency while holding traffic density fixed, then varied traffic density with copy frequency fixed at 20. The report identifies a copy frequency of 20 as the best of five tested settings, with a reported reward of 436.182 at episode 300.', 'These simulation experiments suggest that target-network updates and traffic density affect learning behavior together. The benefit of changing the copy frequency was limited under a given traffic density; the tested settings do not establish a universal optimum.'],
+      },
+      {
+        title: 'Limitations',
+        paragraphs: ['The study was conducted in simulation, with a controlled vehicle interacting with surrounding traffic. It does not demonstrate a fully decentralized multi-agent reinforcement learning system or validate real-world driving safety. Training rewards reflect the chosen environment and reward configuration.'],
+      },
+    ],
+    highlightsTitle: 'Selected Contributions',
+    highlights: [
+      'Team work: implemented and evaluated deep reinforcement learning variants for simulated autonomous intersection navigation.',
+      'Customized the Highway-env intersection configuration and reward settings as a group.',
+      'Compared training rewards and losses across multiple network architectures.',
+      'Investigated target-network update frequency and traffic density. These contributions describe the group’s work; individual responsibilities are not specified.',
+    ],
+    codeNote: 'Academic group project. No public source-code repository is linked. The figures and simulation animation are original project assets; training checkpoints and model artifacts are not distributed here.',
   },
 ];
 
