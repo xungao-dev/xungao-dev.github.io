@@ -390,6 +390,75 @@ export const projects: Project[] = [
     ],
     codeNote: 'Academic group project. No public source-code repository is linked. The figures and simulation animation are original project assets; training checkpoints and model artifacts are not distributed here.',
   },
+  {
+    slug: 'visual-evoked-potential-analysis',
+    number: '12',
+    title: 'Visual Evoked Potential Analysis for Perceptual Learning',
+    eyebrow: 'BIOMEDICAL SIGNAL PROCESSING',
+    subtitle: 'MATLAB-based analysis of neural responses to repeated visual stimulation',
+    context: 'Bachelor’s thesis · Beijing Institute of Technology',
+    year: '2024',
+    category: 'Biomedical',
+    tags: ['MATLAB', 'Biomedical Signal Processing', 'Neural Signals', 'Visual Evoked Potentials', 'Perceptual Learning'],
+    art: 'activity',
+    featured: false,
+    introduction: 'Developed and evaluated a MATLAB-based signal-processing pipeline to analyze visual evoked potentials (VEPs) from electrophysiological recordings in awake mice undergoing repeated visual stimulation. The analysis examined changes in neural response timing, waveform variability, and detectable response occurrence with accumulated perceptual training. This was a post-hoc analysis of existing recordings, intended to inform future adaptive visual-stimulation systems.',
+    approach: 'Processed stimulus-aligned recordings, extracted waveform and timing features, and compared responses across training days and repeated stimulation cycles. The analysis focused on the first negative component, subsequent positive peaks, and the proportion of responses satisfying the selected detection criteria.',
+    sections: [
+      {
+        title: 'Experimental Context',
+        paragraphs: ['A collaborating experimental laboratory provided local field potential recordings from the primary visual cortex of three healthy, awake, head-fixed mice receiving repeated visual grating stimulation. One mouse was followed across ten training days; the other two across six days. My thesis work analyzed these existing recordings; it did not involve independently conducting the animal experiments or collecting all the data.'],
+        figures: [
+          { image: 'images/projects/vep-thesis/experimental-design.png', width: 1336, height: 728, alt: 'Schematic of visual grating presentation to a mouse and repeated stimulation rounds separated by baseline and inter-stimulus intervals.', caption: 'Thesis Fig. 2-1: Repeated grating stimulation and the mouse recording experiment supplied by the collaborating laboratory.' },
+        ],
+      },
+      {
+        title: 'Signal Processing and Feature Extraction',
+        paragraphs: [
+          'The MATLAB workflow read raw binary recordings and stimulus-marker channels, segmented responses relative to stimulus onset, and applied Gaussian smoothing and baseline/DC-drift correction. The final scripts use smoothdata(..., \'gaussian\', 25), followed by baseline subtraction using the first 30 samples of each segmented response.',
+          'Computed average VEP waveforms, waveform standard deviation, and mean-square deviation. Early negative and positive components were detected using time windows and a baseline-noise-based amplitude threshold: 30–125 ms for the first negative valley and 100–200 ms for the positive peak. Response-occurrence proportions were analyzed across stimulation cycles and days.',
+        ],
+        figures: [
+          { image: 'images/projects/vep-thesis/vep-detection-windows.png', width: 1300, height: 974, alt: 'Overlaid VEP waveforms with dashed boundaries indicating first-valley and positive-peak detection windows.', caption: 'Thesis Fig. 4-1: Detection windows for the first negative valley (30–125 ms) and positive peak (100–200 ms).' },
+        ],
+      },
+      {
+        title: 'Selected Findings',
+        paragraphs: [
+          'Early training responses varied substantially in timing and morphology. With repeated training, waveforms showed greater alignment around the first negative component. Waveform variability and amplitude changed across stages; increased standard deviation in later recordings does not indicate a simple reduction in signal variance.',
+          'The following original waveform figures compare mouse 1 on days 1 and 10. Their time and amplitude axis labels appear to be swapped; the images are preserved as supplied, and those labels are not treated as verified.',
+        ],
+        figures: [
+          { image: 'images/projects/vep-thesis/vep-waveforms-day-1.png', width: 1300, height: 974, alt: 'Mouse 1 day 1 VEP traces with varied waveform shapes and a thick red average; original time and amplitude labels appear swapped.', caption: 'Thesis Fig. 3-1: Mouse 1, day 1—early-training VEP waveforms. Original axis labels appear swapped.' },
+          { image: 'images/projects/vep-thesis/vep-waveforms-day-10.png', width: 1138, height: 852, alt: 'Mouse 1 day 10 VEP traces with a circled early negative component and red average; original time and amplitude labels appear swapped.', caption: 'Thesis Fig. 3-2: Mouse 1, day 10—greater alignment around the first negative component. Original axis labels appear swapped.' },
+        ],
+      },
+      {
+        title: 'First-Valley Timing Across Training',
+        paragraphs: [
+          'First-valley timing became more concentrated, predominantly around 50–80 ms in later sessions, compared with a broad distribution of roughly 30–130 ms in early sessions. The day 1 and day 10 scatter plots and ten-day boxplot illustrate this change for mouse 1.',
+          'The proportion of VEP responses satisfying the selected feature-detection criteria generally increased with training. These observations describe this small animal dataset; they do not establish universal causal effects or clinical findings.',
+        ],
+        figures: [
+          { image: 'images/projects/vep-thesis/first-valley-day-1.png', width: 1300, height: 974, alt: 'Mouse 1 day 1 scatter plot of first-valley timing across five stimulation rounds, distributed broadly between about 30 and 130 milliseconds.', caption: 'Thesis Fig. 4-3: Mouse 1, day 1—first-valley timing across five stimulation rounds.' },
+          { image: 'images/projects/vep-thesis/first-valley-day-10.png', width: 1300, height: 974, alt: 'Mouse 1 day 10 scatter plot with first-valley times concentrated mainly around 50 to 80 milliseconds and some outlying values.', caption: 'Thesis Fig. 4-12: Mouse 1, day 10—first-valley timing is more concentrated than on day 1.' },
+          { image: 'images/projects/vep-thesis/first-valley-boxplot.png', width: 1110, height: 867, alt: 'Boxplots of mouse 1 first-valley timing over ten training days, showing narrower timing distributions in later days.', caption: 'Thesis Fig. 4-28: First-valley timing distributions across ten training days for mouse 1.' },
+        ],
+      },
+      {
+        title: 'Scope and Future Work',
+        paragraphs: ['This thesis investigated offline, post-collection signal analysis. It proposed using the extracted features in future closed-loop adaptive visual-stimulus modulation and potentially in brain-computer-interface research related to amblyopia. The supplied work did not implement a real-time feedback controller, machine-learning model, complete BCI, human treatment, or clinical validation.'],
+      },
+    ],
+    highlightsTitle: 'My Contribution',
+    highlights: [
+      'Designed and implemented MATLAB signal preprocessing and feature-extraction routines.',
+      'Examined preprocessing-parameter sensitivity and developed time-window-based peak and valley detection.',
+      'Produced waveform plots and statistical visualizations.',
+      'Analyzed changes across training days and repeated stimulation cycles.',
+    ],
+    codeNote: 'This page summarizes bachelor’s thesis research and selected figures. Source data and raw experimental recordings are not distributed. No public source-code repository or thesis PDF is linked.',
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
