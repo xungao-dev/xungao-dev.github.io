@@ -46,7 +46,7 @@ const availableFigures = project.figures?.filter(figure => `/public/${figure.ima
           </section>
         )}
         <section>
-          <h2>Approach</h2>
+          <h2>{project.approachTitle ?? 'Approach'}</h2>
           <p>{project.approach}</p>
         </section>
         {project.sections?.map(section => (
@@ -64,10 +64,10 @@ const availableFigures = project.figures?.filter(figure => `/public/${figure.ima
             ))}
           </div>
         )}
-        <section>
+        {project.highlights.length > 0 && <section>
           <h2>{project.highlightsTitle ?? 'Selected contributions'}</h2>
           <ul class="detail-bullets">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul>
-        </section>
+        </section>}
         <section class="availability-note">
           <h2>Code & materials</h2>
           <p>{project.codeNote}</p>

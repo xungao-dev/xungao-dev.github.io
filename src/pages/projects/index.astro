@@ -2,6 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { categories, projects } from '../../data/projects';
+
+const groups = ['All projects', ...categories].map((label, index) => ({
+  label,
+  id: `project-group-${index}`,
+  projects: index === 0 ? projects : projects.filter(project => project.category === label),
+}));
 ---
 <Layout title="Projects" description="Selected machine learning, computer vision, biomedical, robotics and software engineering projects by Xun Gao.">
   <section class="page-hero container">
@@ -10,36 +16,35 @@ import { categories, projects } from '../../data/projects';
   </section>
 
   <section class="container projects-listing">
-    <div class="filter-bar" role="group" aria-label="Filter projects by category">
-      <button class="filter-button is-active" type="button" data-filter="All" aria-pressed="true">All projects <span>{projects.length}</span></button>
-      {categories.map(category => <button class="filter-button" type="button" data-filter={category} aria-pressed="false">{category}</button>)}
-    </div>
-    <p id="filter-status" class="sr-only" aria-live="polite">Showing all {projects.length} projects</p>
-    <div class="project-grid projects-grid-all">
-      {projects.map(project => <ProjectCard project={project} />)}
+    <div class="project-index-list">
+      {groups.map(group => (
+        <section class="project-category-section">
+          <h2 class="project-category-heading">
+            <button class="project-category-button" id={`${group.id}-button`} type="button" aria-expanded="false" aria-controls={group.id}>
+              <span>{group.label} <span class="project-category-count">{group.projects.length}</span></span>
+              <span class="project-category-toggle" aria-hidden="true">+</span>
+            </button>
+          </h2>
+          <div class="project-category-panel" id={group.id} role="region" aria-labelledby={`${group.id}-button`} hidden>
+            {group.projects.map(project => <ProjectCard project={project} />)}
+          </div>
+        </section>
+      ))}
     </div>
     <div class="portfolio-note"><strong>A note on code availability.</strong> Not every project can have a public GitHub repository. In those cases, the project page focuses on scope, methods and personally attributable work without sharing restricted material.</div>
   </section>
 </Layout>
 <script>
-  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-category]'));
-  const status = document.querySelector<HTMLElement>('#filter-status');
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.project-category-button'));
   for (const button of buttons) {
     button.addEventListener('click', () => {
-      const selected = button.dataset.filter ?? 'All';
-      let shown = 0;
-      buttons.forEach(item => {
-        const active = item === button;
-        item.classList.toggle('is-active', active);
-        item.setAttribute('aria-pressed', String(active));
-      });
-      cards.forEach(card => {
-        const visible = selected === 'All' || card.dataset.category === selected;
-        card.hidden = !visible;
-        if (visible) shown++;
-      });
-      if (status) status.textContent = `Showing ${shown} project${shown === 1 ? '' : 's'} in ${selected}`;
+      const expand = button.getAttribute('aria-expanded') !== 'true';
+      for (const item of buttons) {
+        const active = item === button && expand;
+        item.setAttribute('aria-expanded', String(active));
+        const panel = document.getElementById(item.getAttribute('aria-controls') ?? '');
+        if (panel) panel.hidden = !active;
+      }
     });
   }
 </script>

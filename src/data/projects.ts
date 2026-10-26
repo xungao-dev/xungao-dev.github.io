@@ -24,6 +24,7 @@ export type Project = {
   context: string;
   introduction: string;
   approach: string;
+  approachTitle?: string;
   highlights: string[];
   highlightsTitle?: string;
   codeNote: string;
@@ -148,7 +149,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'biomedical-signal-processing',
-    number: '07',
+    number: '06',
     title: 'Biomedical Signal Processing & Interactive Analysis',
     eyebrow: 'BIOMEDICAL SIGNAL PROCESSING',
     subtitle: 'Interactive MATLAB applications for EEG, ECG, and eye-tracking analysis',
@@ -185,7 +186,7 @@ export const projects: Project[] = [
 
   {
     slug: 'speech-signal-analysis-coding',
-    number: '08',
+    number: '07',
     title: 'Speech Signal Analysis & Coding',
     eyebrow: 'SPEECH & AUDIO SIGNAL PROCESSING',
     subtitle: 'Python experiments in speech analysis, source–filter modeling, and digital coding',
@@ -247,7 +248,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'jobmatch',
-    number: '09',
+    number: '08',
     title: 'JobMatch',
     eyebrow: 'SOFTWARE DEVELOPMENT',
     subtitle: 'GitHub-based job discovery and application tracking for developers',
@@ -279,7 +280,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'cv-object-tracking',
-    number: '10',
+    number: '09',
     title: 'Visual Marker Tracking and 3D Trajectory Reconstruction',
     eyebrow: 'COMPUTER VISION & MOTION TRACKING',
     subtitle: 'Camera calibration, visual marker tracking, and 3D trajectory reconstruction',
@@ -342,7 +343,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'rl-intersection-navigation',
-    number: '11',
+    number: '10',
     title: 'Deep Reinforcement Learning for Autonomous Intersection Navigation',
     eyebrow: 'REINFORCEMENT LEARNING & AUTONOMOUS DRIVING',
     subtitle: 'Comparing deep reinforcement learning algorithms for autonomous navigation at an unsignalized intersection.',
@@ -392,7 +393,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'visual-evoked-potential-analysis',
-    number: '12',
+    number: '11',
     title: 'Visual Evoked Potential Analysis for Perceptual Learning',
     eyebrow: 'BIOMEDICAL SIGNAL PROCESSING',
     subtitle: 'MATLAB-based analysis of neural responses to repeated visual stimulation',
@@ -458,6 +459,63 @@ export const projects: Project[] = [
       'Analyzed changes across training days and repeated stimulation cycles.',
     ],
     codeNote: 'This page summarizes bachelor’s thesis research and selected figures. Source data and raw experimental recordings are not distributed. No public source-code repository or thesis PDF is linked.',
+  },
+  {
+    slug: 'confocal-endomicroscopy',
+    number: '12',
+    title: 'Confocal Laser Endomicroscopy & Image Distortion Correction',
+    eyebrow: 'BIOMEDICAL IMAGING',
+    subtitle: 'Experimental confocal imaging and MATLAB-based geometric distortion correction',
+    category: 'Biomedical',
+    year: '2023',
+    context: 'Collaborative research · Beijing Institute of Technology · IEEE Photonics Journal (Second Author)',
+    tags: ['MATLAB', 'LabVIEW', 'Biomedical Imaging', 'Image Processing', 'Confocal Microscopy', 'MEMS'],
+    art: 'eye',
+    featured: false,
+    introduction: 'This research investigated geometric image distortion in a miniature confocal laser endomicroscope based on a two-axis electrothermal MEMS mirror. The system uses laser scanning to acquire high-resolution fluorescence images. However, optical characteristics and nonuniform mirror motion introduce geometric distortions that affect image reconstruction. The research combined experimental imaging, optical modelling, and MATLAB-based image correction to improve the geometric accuracy of the reconstructed images.',
+    approachTitle: 'Experimental System',
+    approach: 'The research team developed a confocal laser endomicroscope integrating a MEMS scanning mirror, miniature optical components, fluorescence detection, and electronic data acquisition. Experimental measurements were collected to characterize scanning behaviour and evaluate imaging performance. LabVIEW was used for image acquisition and visualization, and MATLAB was used for image correction.',
+    sections: [
+      {
+        title: 'Image Distortion Correction',
+        paragraphs: [
+          'The research addressed three major sources of geometric distortion. The proposed method combines optical modelling and measured scanning behaviour to construct a spatial mapping for image reconstruction.',
+        ],
+        bullets: [
+          'Barrel distortion arising from the objective lenses.',
+          'Fan-shaped distortion resulting from the optical configuration.',
+          'Nonlinear distortion caused by nonuniform MEMS mirror scanning.',
+        ],
+      },
+      {
+        title: 'Experimental Results',
+        paragraphs: [
+          'The correction method was evaluated using fluorescence images of a microfabricated test structure acquired with the experimental microscope.',
+          'The reconstructed images showed substantially reduced geometric distortion. In one measured region, distortion decreased from 21.49% to −1.40%, demonstrating the effectiveness of the team’s correction approach.',
+        ],
+      },
+      {
+        title: 'My Contribution',
+        paragraphs: ['As a member of the research team, I contributed primarily to experimental work and image processing:'],
+        bullets: [
+          'Assisted with setting up the experimental confocal microscopy system.',
+          'Participated in experimental data acquisition using LabVIEW.',
+          'Assisted with MATLAB-based image preprocessing and geometric distortion correction.',
+          'Contributed to the research published in IEEE Photonics Journal as second author.',
+        ],
+      },
+      {
+        title: 'Publication',
+        paragraphs: [
+          '“A MEMS Mirror-Based Confocal Laser Endomicroscope with Image Distortion Correction.” IEEE Photonics Journal, 2023.',
+          'DOI: 10.1109/JPHOT.2023.3264597 · Second Author',
+        ],
+      },
+    ],
+    highlights: [],
+    codeNote: 'Project code is not publicly available. This page summarizes collaborative research published in IEEE Photonics Journal.',
+    paper: 'https://doi.org/10.1109/JPHOT.2023.3264597',
+    paperLabel: 'Read Published Paper',
   },
 ];
 

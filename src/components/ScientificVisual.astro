@@ -42,9 +42,9 @@ const points = Array.from({ length: 420 }, (_, i) => {
   <span class="visual-coordinate">{type === 'cloud' ? 'X / Y / Z' : type === 'geometry' ? '01 / SPATIAL STRUCTURE' : type === 'radar' ? '02 / SENSOR GEOMETRY' : '03 / TEMPORAL PATTERNS'}</span>
 </div>
 <style>
-  .scientific-visual { position: relative; width: 100%; overflow: hidden; color: #c6bfae; background: radial-gradient(ellipse at 55% 45%, #b4a78d0b, transparent 65%); }
+  .scientific-visual { position: relative; width: 100%; overflow: hidden; color: #666; background: radial-gradient(ellipse at 55% 45%, #b4a78d0b, transparent 65%); }
   svg { display: block; width: 100%; height: 100%; }
-  .visual-coordinate { position: absolute; bottom: 20px; left: 24px; font: .55rem/1.6 "Times New Roman", Times, serif; letter-spacing: .16em; color: #aaa69f; }
+  .visual-coordinate { position: absolute; bottom: 20px; left: 24px; font: .55rem/1.6 "Times New Roman", Times, serif; letter-spacing: .16em; color: var(--muted); }
   .cloud-motion { transform-origin: 300px 270px; animation: cloud-drift 50s ease-in-out infinite alternate; }
   .scan-motion { transform-origin: 300px 270px; animation: scan 65s linear infinite; }
   .wave-motion { animation: signal 8s ease-in-out infinite alternate; }
