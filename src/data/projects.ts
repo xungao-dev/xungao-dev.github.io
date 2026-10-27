@@ -25,6 +25,9 @@ export type Project = {
   introduction: string;
   approach: string;
   approachTitle?: string;
+  theme?: 'dark';
+  pipeline?: string[];
+  tools?: string[];
   highlights: string[];
   highlightsTitle?: string;
   codeNote: string;
@@ -35,7 +38,7 @@ export type Project = {
   demoVideo?: string; // Relative to public/; shown only when the file exists at build time.
   figures?: ProjectFigure[];
   overviewFigure?: ProjectFigure;
-  sections?: { title: string; paragraphs: string[]; bullets?: string[]; figures?: ProjectFigure[] }[];
+  sections?: { title: string; paragraphs: string[]; bullets?: string[]; figures?: ProjectFigure[]; imagePlaceholders?: { title: string; caption: string }[] }[];
 };
 
 // All project text is editable here. Check company/team disclosure rules before adding
@@ -516,6 +519,62 @@ export const projects: Project[] = [
     codeNote: 'Project code is not publicly available. This page summarizes collaborative research published in IEEE Photonics Journal.',
     paper: 'https://doi.org/10.1109/JPHOT.2023.3264597',
     paperLabel: 'Read Published Paper',
+  },
+
+  {
+    slug: 'satellite-sdr',
+    number: '13',
+    title: 'Satellite Signal Reception Using Software-Defined Radio',
+    eyebrow: 'SIGNAL PROCESSING & WIRELESS COMMUNICATIONS',
+    subtitle: 'Designed and tested an experimental satellite radio reception system using a handmade quadrifilar helical antenna and a software-defined radio receiver, exploring RF signal acquisition, satellite tracking, and hardware troubleshooting.',
+    category: 'Machine Learning & Signal Processing',
+    context: 'University Group Project',
+    tags: ['Wireless Communications', 'Software-Defined Radio', 'RF Engineering', 'Antenna Design', 'Satellite Communications'],
+    art: 'radar',
+    featured: false,
+    introduction: 'This university group project explored receiving weather satellite signals from NOAA satellites using a custom-built antenna and a software-defined radio (SDR) receiver. The objective was to acquire satellite radio signals and decode them into weather images, combining antenna design, RF reception, satellite tracking, signal processing, and image decoding software.',
+    approachTitle: 'System Architecture',
+    approach: 'The proposed reception pipeline connected a handmade antenna to an SDR receiver, with software for satellite tracking, spectrum monitoring, and weather image decoding. This describes the intended system; NOAA signal reception and image decoding were not achieved.',
+    pipeline: ['NOAA Weather Satellites', 'Quadrifilar Helical Antenna', 'SDR Receiver', 'Signal Processing', 'Weather Image Decoding'],
+    tools: [
+      'Handmade quadrifilar helical antenna (QFH)',
+      'SDR RSP1 receiver',
+      'Orbitron for satellite tracking',
+      'SDR# / SDRuno for signal reception and spectrum monitoring',
+      'WXtoImg for weather satellite image decoding',
+    ],
+    sections: [
+      {
+        title: 'Antenna Design and Experimental Setup',
+        paragraphs: [
+          'The team designed and assembled a quadrifilar helical antenna targeting the NOAA weather satellite band around 137 MHz. Dimensions were determined from frequency and wavelength parameters, and conductive elements were mounted on a PVC supporting structure.',
+          'The antenna was characterized with a network analyzer, with a reported VSWR below 2.5, then connected to the SDR receiver for spectrum monitoring and radio signal acquisition.',
+        ],
+        figures: [
+          { image: 'images/projects/satellite-sdr/01_handmade_qfh_antenna.webp', width: 876, height: 1169, alt: 'Handmade quadrifilar helical antenna with conductive loops mounted around a PVC support.', caption: 'Team report, Fig. 2 (p. 2): completed QFH antenna targeting the weather satellite band around 137 MHz.' },
+          { image: 'images/projects/satellite-sdr/02_antenna_vswr_measurement.webp', width: 962, height: 1423, alt: 'Network analyzer displaying the antenna VSWR trace, with a marker near 137.52 MHz reading approximately 1.36.', caption: 'Team report, Fig. 4 (p. 4): antenna VSWR characterization. The marker near 137.52 MHz reads approximately 1.36, consistent with the reported VSWR below 2.5 in the target band.' },
+        ],
+      },
+      {
+        title: 'Experimental Results and Troubleshooting',
+        paragraphs: [
+          'The SDR receiver initially failed to detect signals correctly. The team traced the hardware connection problem to a damaged internal RF cable and replaced it. After troubleshooting, the system successfully received local broadcast radio signals.',
+          'Attempts to receive and decode NOAA satellite transmissions were unsuccessful; no NOAA weather images were reconstructed. Possible limiting factors discussed in the report included the reception environment, interference, and the antenna/receiver setup. The experiment demonstrated practical RF integration and fault isolation while exposing the limitations of the satellite reception setup.',
+        ],
+        figures: [
+          { image: 'images/projects/satellite-sdr/03_successful_local_radio_reception.webp', width: 1268, height: 630, alt: 'SDR spectrum and waterfall showing a local FM broadcast signal tuned to 88.7 MHz.', caption: 'Team report, Fig. 20 (p. 14): successful local broadcast reception at 88.7 MHz after hardware troubleshooting.' },
+          { image: 'images/projects/satellite-sdr/04_unsuccessful_noaa_reception.webp', width: 1269, height: 645, alt: 'NOAA reception attempt producing noisy output and map overlays without a usable weather image.', caption: 'Team report, Fig. 21 (p. 15): unsuccessful NOAA reception attempt. Noise and software map overlays do not represent a successfully reconstructed satellite weather image.' },
+        ],
+      },
+    ],
+    highlightsTitle: 'Technical Takeaways',
+    highlights: [
+      'RF antenna design and characterization using network analyzer measurements.',
+      'Software-defined radio configuration and radio spectrum monitoring.',
+      'Hardware debugging and experimental validation through local broadcast reception.',
+      'Practical limitations of satellite signal reception in the experimental environment.',
+    ],
+    codeNote: 'University group project; descriptions refer to the team’s work rather than individually confirmed contributions. Selected original figures from the team’s Phase 5 research report are shown here as optimized WebP images. The full report is not distributed on this site. No public source-code repository is provided.',
   },
 ];
 
