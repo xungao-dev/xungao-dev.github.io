@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Radar odometry distance comparison</title>
+  <desc id="desc">Reference distance was 25 meters and Doppler radar estimate was 25.92986 meters, a 0.92986-meter difference or 3.72 percent relative error.</desc>
+  <rect width="1200" height="360" fill="#f7f8f6"/>
+  <g font-family="Arial,Helvetica,sans-serif">
+    <text x="48" y="49" font-size="18" font-weight="700" letter-spacing="3" fill="#355b55">DISTANCE ESTIMATION / EXPERIMENTAL RESULT</text>
+    <text x="48" y="83" font-size="14" fill="#63736e">One parking-lot trial with a measured 25 m reference path</text>
+    <text x="48" y="152" font-size="18" font-weight="600" fill="#263d39">Reference</text>
+    <text x="48" y="246" font-size="18" font-weight="600" fill="#263d39">Radar estimate</text>
+    <line x1="242" y1="302" x2="1055" y2="302" stroke="#afc1b9" stroke-width="1"/>
+    <g fill="#63736e" font-size="12">
+      <text x="238" y="323">0</text><text x="515" y="323">10 m</text><text x="788" y="323">20 m</text><text x="1041" y="323">30 m</text>
+    </g>
+    <g stroke="#dce5df" stroke-width="1" stroke-dasharray="5 5">
+      <line x1="242" y1="116" x2="242" y2="306"/>
+      <line x1="513" y1="116" x2="513" y2="306"/>
+      <line x1="784" y1="116" x2="784" y2="306"/>
+      <line x1="1055" y1="116" x2="1055" y2="306"/>
+    </g>
+    <rect x="242" y="128" width="678" height="40" rx="5" fill="#a7beb5"/>
+    <rect x="242" y="223" width="703.5" height="40" rx="5" fill="#327467"/>
+    <text x="937" y="154" font-size="21" font-weight="700" fill="#263d39">25.00 m</text>
+    <text x="961" y="249" font-size="21" font-weight="700" fill="#263d39">25.93 m</text>
+    <text x="1079" y="156" font-size="12" fill="#63736e" text-anchor="middle">Difference</text>
+    <text x="1079" y="182" font-size="20" font-weight="700" fill="#a15a3a" text-anchor="middle">+0.93 m</text>
+    <text x="1079" y="205" font-size="12" fill="#63736e" text-anchor="middle">3.72% error</text>
+    <text x="48" y="345" font-size="12" fill="#63736e">Values from the original experiment report; chart redrawn for readability.</text>
+  </g>
+</svg>
