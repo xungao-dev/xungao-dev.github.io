@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Doppler radar odometry workflow</title>
+  <desc id="desc">An explanatory schematic of radar detections, RANSAC sinusoidal fitting, vehicle motion estimation, and distance integration.</desc>
+  <rect width="1200" height="430" fill="#f7f8f6"/>
+  <text x="48" y="51" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="3" fill="#355b55">RADAR ODOMETRY / PROCESSING PIPELINE</text>
+  <text x="48" y="82" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#63736e">An explanatory schematic based on the experiment, not a recording of the raw sensor output.</text>
+  <g font-family="Arial,Helvetica,sans-serif">
+    <g>
+      <rect x="40" y="118" width="260" height="251" rx="12" fill="white" stroke="#cfdbd5" stroke-width="2"/>
+      <text x="62" y="153" font-size="16" font-weight="700" fill="#263d39">01 / RADAR DETECTIONS</text>
+      <text x="62" y="180" font-size="13" fill="#63736e">Radial speed + azimuth</text>
+      <circle cx="165" cy="291" r="5" fill="#275f58"/>
+      <path d="M 165 291 L 101 221 M 165 291 L 135 202 M 165 291 L 203 212 M 165 291 L 239 243" stroke="#8bb3a8" stroke-width="2"/>
+      <path d="M 95 288 A 71 71 0 0 1 235 288 M 115 288 A 51 51 0 0 1 215 288" fill="none" stroke="#dde8e1" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <circle cx="101" cy="221" r="6" fill="#deac6a"/><circle cx="135" cy="202" r="6" fill="#deac6a"/>
+      <circle cx="203" cy="212" r="6" fill="#deac6a"/><circle cx="239" cy="243" r="6" fill="#deac6a"/>
+      <text x="62" y="349" font-size="12" fill="#63736e">mmWave sensor on a cart</text>
+    </g>
+    <g>
+      <rect x="328" y="118" width="260" height="251" rx="12" fill="white" stroke="#cfdbd5" stroke-width="2"/>
+      <text x="350" y="153" font-size="16" font-weight="700" fill="#263d39">02 / RANSAC FITTING</text>
+      <text x="350" y="180" font-size="13" fill="#63736e">Reject motion outliers</text>
+      <path d="M 355 310 L 563 310 M 370 203 L 370 321" fill="none" stroke="#aabdb6" stroke-width="1.5"/>
+      <path d="M 376 215 C 418 251 456 330 506 294 C 529 279 545 237 558 213" fill="none" stroke="#327467" stroke-width="3"/>
+      <g fill="#327467"><circle cx="381" cy="222" r="4"/><circle cx="410" cy="249" r="4"/><circle cx="438" cy="284" r="4"/><circle cx="468" cy="308" r="4"/><circle cx="500" cy="296" r="4"/><circle cx="546" cy="238" r="4"/></g>
+      <g fill="#d58c74"><circle cx="399" cy="203" r="5"/><circle cx="451" cy="224" r="5"/><circle cx="533" cy="314" r="5"/></g>
+      <text x="350" y="349" font-size="12" fill="#63736e">500 trials · threshold 0.01</text>
+    </g>
+    <g>
+      <rect x="616" y="118" width="260" height="251" rx="12" fill="white" stroke="#cfdbd5" stroke-width="2"/>
+      <text x="638" y="153" font-size="16" font-weight="700" fill="#263d39">03 / EGO-MOTION</text>
+      <text x="638" y="180" font-size="13" fill="#63736e">Speed + heading estimate</text>
+      <rect x="714" y="209" width="65" height="104" rx="20" fill="#edf2ef" stroke="#327467" stroke-width="3"/>
+      <rect x="730" y="219" width="32" height="28" rx="5" fill="#bdd7ce"/>
+      <rect x="730" y="278" width="32" height="21" rx="5" fill="#bdd7ce"/>
+      <path d="M 746 270 L 746 194" stroke="#d48a53" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 738 204 L 746 190 L 754 204" fill="none" stroke="#d48a53" stroke-width="4" stroke-linejoin="round"/>
+      <text x="638" y="349" font-size="12" fill="#63736e">Ackermann vehicle model</text>
+    </g>
+    <g>
+      <rect x="904" y="118" width="256" height="251" rx="12" fill="white" stroke="#cfdbd5" stroke-width="2"/>
+      <text x="926" y="153" font-size="16" font-weight="700" fill="#263d39">04 / INTEGRATION</text>
+      <text x="926" y="180" font-size="13" fill="#63736e">Frame timestamps + speed</text>
+      <path d="M 942 300 L 1115 300" stroke="#aabdb6" stroke-width="2" stroke-dasharray="7 6"/>
+      <path d="M 959 296 C 959 270 952 248 972 241 S 1012 254 1028 228 S 1063 209 1098 194" fill="none" stroke="#327467" stroke-width="4"/>
+      <circle cx="959" cy="296" r="6" fill="#327467"/><circle cx="1098" cy="194" r="6" fill="#d48a53"/>
+      <text x="926" y="349" font-size="12" fill="#63736e">Dead reckoning / distance</text>
+    </g>
+    <g stroke="#8ea8a0" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M 305 242 L 324 242 M 318 236 L 324 242 L 318 248"/>
+      <path d="M 593 242 L 612 242 M 606 236 L 612 242 L 606 248"/>
+      <path d="M 881 242 L 900 242 M 894 236 L 900 242 L 894 248"/>
+    </g>
+  </g>
+</svg>
