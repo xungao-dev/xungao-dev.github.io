@@ -11,7 +11,7 @@ interface Props { project: Project; }
 const { project } = Astro.props;
 const demoFiles = import.meta.glob('/public/media/projects/*.mp4', { query: '?url', import: 'default' });
 const hasDemoVideo = project.demoVideo && `/public/${project.demoVideo}` in demoFiles;
-const figureFiles = import.meta.glob('/public/images/projects/**/*.{png,jpg,jpeg,webp,gif}', { query: '?url', import: 'default' });
+const figureFiles = import.meta.glob('/public/images/projects/**/*.{png,jpg,jpeg,webp,gif,svg}', { query: '?url', import: 'default' });
 const availableFigures = project.figures?.filter(figure => `/public/${figure.image}` in figureFiles) ?? [];
 ---
 <Layout title={project.title} description={project.subtitle} theme={project.theme}>
