@@ -576,6 +576,63 @@ export const projects: Project[] = [
     ],
     codeNote: 'University group project; descriptions refer to the team’s work rather than individually confirmed contributions. Selected original figures from the team’s Phase 5 research report are shown here as optimized WebP images. The full report is not distributed on this site. No public source-code repository is provided.',
   },
+  {
+    slug: 'doppler-radar-odometry',
+    number: '14',
+    title: 'Doppler Radar Odometry for Vehicle Ego-Motion Estimation',
+    eyebrow: 'ROBOTICS & RADAR PERCEPTION',
+    subtitle: 'Estimating a wheeled vehicle’s motion and travel distance from millimeter-wave Doppler measurements',
+    category: 'Robotics & Sensing',
+    year: '2023',
+    context: 'Undergraduate experimental project · Beijing Institute of Technology',
+    tags: ['Robotics', 'mmWave Radar', 'Radar Odometry', 'Ego-Motion Estimation', 'RANSAC', 'MATLAB', 'Dead Reckoning'],
+    art: 'radar',
+    featured: false,
+    introduction: 'Investigated radar-only odometry for a four-wheeled mobile platform using a millimeter-wave Doppler radar. The experiment estimated vehicle motion from the radial velocities and azimuth angles of surrounding radar detections, then compared the reconstructed travel distance with a manually measured 25 m reference path in a parking lot.',
+    approach: 'Mounted a Doppler radar on a four-wheeled cart and processed recorded radar frames in MATLAB. For each frame, fitted a sinusoidal radial-velocity-versus-azimuth model with a manually implemented RANSAC procedure to reduce the influence of moving-target detections and other outliers. Used fitted parameters to estimate radar speed and motion direction, applied the experiment’s Ackermann-model assumptions to obtain vehicle motion estimates, and integrated frame-wise velocities using timestamps to compute traveled distance and a dead-reckoned path.',
+    overviewFigure: {
+      image: 'images/projects/doppler-radar-odometry/odometry-pipeline.svg',
+      alt: 'Explanatory workflow showing radar target detections, RANSAC fitting, vehicle motion estimation and timestamp-based integration.',
+      caption: 'Processing workflow redrawn from the experiment report; this is a schematic, not a raw radar visualization.',
+    },
+    sections: [
+      {
+        title: 'Radar Data and Robust Motion Estimation',
+        paragraphs: [
+          'Each radar detection included position coordinates, azimuth angle, radial velocity, and echo intensity. The MATLAB script loaded timestamped text files, used azimuth and radial velocity for the fit, and computed time intervals from recorded frame timestamps because the scan cadence was not constant.',
+          'The RANSAC implementation randomly selected three detections per iteration, fitted a sinusoidal model, and retained the candidate with the most inliers. The report specifies 500 iterations and an inlier threshold of 0.01. The sinusoid’s fitted amplitude and phase were then used to estimate radar speed and motion direction. These estimates assume that enough radar detections correspond to stationary surroundings.',
+        ],
+      },
+      {
+        title: 'Experimental Validation',
+        paragraphs: [
+          'A straight-line reference distance of 25 m was marked in the university parking lot. Integrating the estimated motion over the recorded frame intervals produced a traveled distance of 25.92986 m: an absolute difference of 0.92986 m and a relative error of approximately 3.72% in this trial.',
+          'The report also visualizes a dead-reckoned trajectory. Errors may arise from the reference-distance measurement, imperfect alignment between the test and reference endpoints, model-fitting errors, timestamp intervals, and deviation from perfectly straight motion. This single reported trial is not a benchmark of localization accuracy across diverse environments.',
+        ],
+        figures: [
+          {
+            image: 'images/projects/doppler-radar-odometry/distance-comparison.svg',
+            alt: 'Comparison between the 25.00 meter reference path and 25.93 meter radar odometry estimate, showing 3.72 percent relative error.',
+            caption: 'Experimental comparison from the report: 25.00 m reference versus 25.92986 m estimated distance (approximately 3.72% relative error).',
+          },
+        ],
+      },
+      {
+        title: 'Scope and Limitations',
+        paragraphs: [
+          'This was an offline radar odometry and dead-reckoning experiment, not a complete SLAM, sensor-fusion, autonomous navigation, or real-time deployment system. It relied on stationary background targets and an Ackermann-style wheeled vehicle model. The report references the approach of Kellner et al., “Instantaneous ego-motion estimation using Doppler radar” (ITSC 2013).',
+        ],
+      },
+    ],
+    highlightsTitle: 'My Contribution',
+    highlights: [
+      'Designed and carried out an experimental radar-odometry workflow with a millimeter-wave radar mounted on a wheeled cart.',
+      'Implemented and tuned a RANSAC-based sinusoidal fitting procedure directly in MATLAB rather than using a ready-made RANSAC library.',
+      'Processed timestamped radar frames to estimate vehicle speed and motion direction, integrate traveled distance, and visualize dead reckoning.',
+      'Compared the radar-estimated 25.92986 m travel distance with a 25 m measured reference and analyzed error sources.',
+    ],
+    codeNote: 'Academic experimental work based on an undergraduate report. The original report contains MATLAB scripts, but no independently published code repository or raw radar dataset is linked here. Diagrams are newly redrawn explanatory visuals based on the reported workflow and measurements.',
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
